@@ -1,5 +1,6 @@
 # PDXplorer
 Portland City Exploration Dashboard
+[Planning](./Planning.MD)
 
 ## Extra Packages Installed 
 * Leaflet.js - maps
