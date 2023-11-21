@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import App from './App';
 import '@testing-library/jest-dom';
-import LandingCard from './Card'
+import LandingCard from './components/Card'
 
 
 /*LandingCard*/
