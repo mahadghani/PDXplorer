@@ -17,8 +17,8 @@ const LandingCard = ({ onGoClick }) => {
         <Card.Header>Where are you headed?</Card.Header>
         <Form>
           <Form.Field>
-            <label>Destination</label>
-            <input placeholder="Enter your destination"
+            <label htmlFor='destination'>Destination</label>
+            <input id='destination' placeholder="Enter your destination"
             value ={inputValue}
             onChange={handleInputChange}
                    />

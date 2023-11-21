@@ -12,6 +12,7 @@ function App() {
   const handleGoClick = (inputValue) => {
     setDestination(inputValue); //update state with input value
     setShowCard(false);
+    console.log('input value: ', inputValue);
   };
   return (
 
