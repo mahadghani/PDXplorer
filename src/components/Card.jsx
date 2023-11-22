@@ -40,22 +40,6 @@ const LandingCard = ({ onGoClick }) => {
         </Form>
       </Modal.Content>
     </Modal>
-
-  //   <Modal centered>
-  //     <Modal.Content>
-  //       <Modal.Header>Where are you headed?</Modal.Header>
-  //       <Form>
-  //         <Form.Field>
-  //           <label htmlFor='destination'>Destination</label>
-  //           <input id='destination' placeholder="Enter your destination"
-  //           value ={inputValue}
-  //           onChange={handleInputChange}
-  //                  />
-  //         </Form.Field>
-  //         <Button primary fluid onClick={handleSubmit}>Go</Button>
-  //       </Form>
-  //     </Modal.Content>
-  //   </Modal>
   );
 };
 

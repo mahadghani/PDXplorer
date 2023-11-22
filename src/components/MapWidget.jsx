@@ -2,6 +2,7 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import './MapWidget.css';
 
 const MapWidget = () => {
   const position = [45.5051, -122.6750]; // Porland Coordinates
@@ -16,7 +17,7 @@ const MapWidget = () => {
 
   return (
 
-      <MapContainer center={position} zoom={13} style={{ height: '400px', width: '100%'}}>
+      <MapContainer center={position} zoom={13} className='map-container' >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
