@@ -7,7 +7,7 @@ import LandingCard from './components/Card';
 import MapWidget from './components/MapWidget';
 import TrimetWidget from './components/TrimetWidget';
 import BiketownWidget from './components/BiketownWidget';
-import HotspotWidget from './components/HotspotsWidget';
+import HotspotsWidget from './components/HotspotsWidget';
 import TopBar from './components/TopBar';
 
 function App() {
@@ -23,14 +23,16 @@ function App() {
   return (
 
     <Container fluid className="App">
-      <TopBar />
+      <TopBar className='top-bar'/>
       <div className='widgets-container'>
-        <HotspotWidget />
-        <MapWidget />
-        <TrimetWidget />
-        <BiketownWidget />
+        <HotspotsWidget className='hotspots-widget'/>
+        <MapWidget className='map-widget'/>
+        <div className='right-column'>
+          <TrimetWidget className='trimet-widget'/>
+          <BiketownWidget className='biketown-widget'/>
+        </div>
       </div>
-      <div className='weather-widget'>{/*Weather widget goes here*/}Weather widget</div>
+      <div className='weather-widget'>{/*Weather widget goes here*/}<h2>Weather widget</h2></div>
       {showCard ? <LandingCard onGoClick={handleGoClick} /> : <h1>Destination: {destination}</h1>}
       {/*displays destination info when card not shown*/}
     </Container>
