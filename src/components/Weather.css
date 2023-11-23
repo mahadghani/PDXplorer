@@ -1,0 +1,68 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
+
+p {
+  color: black;
+}
+
+.weather-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.location {
+  font-size: 1.5em;
+  margin-bottom: 5px;
+}
+
+.temperature {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.condition {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+.condition-description {
+  font-size: 1em;
+}
+
+.loading {
+  font-size: 1.2em;
+  color: #aaa;
+}
+
+.weather-row {
+  display: inline-block;
+}
+
+.forecast-item div {
+  margin-right: 7px;
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.forecast-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.forecast-item p {
+  font-size: medium;
+}
