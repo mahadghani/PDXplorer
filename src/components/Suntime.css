@@ -1,0 +1,27 @@
+.suntime-container {
+  max-width: 300px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.weather-logo {
+  width: 130px; /* Adjust the width as needed */
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.daytime {
+  color: #4caf50; /* Green color for daytime */
+}
+
+.nighttime {
+  color: #34495e; /* Dark blue color for nighttime */
+}
+
+p {
+  font-size: large;
+}
