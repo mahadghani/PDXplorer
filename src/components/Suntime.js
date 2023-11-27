@@ -39,18 +39,19 @@ function Suntime() {
       setCurrentTime(
         `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${AMPM}`
       );
+     let riseComponents, riseHours, riseMinutes, sunriseString, sunsetString, setComponents, setHours, setMinutes;
+      if(time.sunrise && time.sunset) {
+         sunriseString = time.sunrise;
+         riseComponents = sunriseString.split(/:| /);
+         riseHours = parseInt(riseComponents[0], 10);
+         riseMinutes = parseInt(riseComponents[1], 10);
 
-      const sunriseString = time.sunrise;
-      const riseComponents = sunriseString.split(/:| /);
-      const riseHours = parseInt(riseComponents[0], 10);
-      const riseMinutes = parseInt(riseComponents[1], 10);
-
-      const sunsetString = time.sunset;
-      const setComponents = sunsetString.split(/:| /);
-      const setHours = parseInt(setComponents[0], 10);
-      const setMinutes = parseInt(setComponents[1], 10);
-
-      if (AMPM == "AM") {
+         sunsetString = time.sunset;
+         setComponents = sunsetString.split(/:| /);
+        setHours = parseInt(setComponents[0], 10);
+         setMinutes = parseInt(setComponents[1], 10);
+      }
+      if (AMPM === "AM") {
         if (formattedHours < riseHours) {
           setIsDaytime(false);
         } else if (formattedHours > riseHours) {
