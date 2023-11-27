@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./Weather.css";
 
 const api = {
-  key: "f82bf215a4cf41cd987204139231311",
+
+  key: process.env.REACT_APP_WEATHER_API_KEY
 };
 
 function Weather() {
@@ -58,7 +59,7 @@ function Weather() {
               </div>
             </div>
             <div className="weather-row">
-              <p className="location">Daily Forecast</p>
+              <p className="location">Hourly Forecast</p>
               {weather.forecast.forecastday.map((day) => (
                 <div key={day.date_epoch} className="forecast-item">
                   <div className="weather-row">
