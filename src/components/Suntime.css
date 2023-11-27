@@ -20,11 +20,17 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px;
+  /*padding: px;*/
+  /*overflow: hidden;*/
+}
+.right-column p {
+  font-size: 1em;
+  line-height: 1;
+  margin-bottom: 4px;
 }
 
 .weather-logo {
-  width: 30px; /* Adjust the width as needed */
+  width: 60px; /* Adjust the width as needed */
   height: auto;
   margin-bottom: 10px;
 }
