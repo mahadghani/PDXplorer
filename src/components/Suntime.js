@@ -87,11 +87,16 @@ function Suntime() {
 
   return (
     <div className="suntime-container">
-      <img className="weather-logo" src={logoSrc} alt="Weather Logo" />
-      <p className={timeClass}>{isDaytime ? "It's Day!" : "It's Night!"}</p>
-      <p className={timeClass}>Current Time: {currentTime}</p>
-      <p>Sunrise: {time.sunrise}</p>
-      <p>Sunset: {time.sunset}</p>
+      <div className='left-column'>
+        <img className="weather-logo" src={logoSrc} alt="Weather Logo" />
+      </div>
+      <div className='right-column'>
+      <p className={timeClass}>{isDaytime ? "It's Day!" : "It's" +
+        " Night!"}</p>
+        <p className={timeClass}>Current Time: {currentTime}</p>
+        <p>Sunrise: {time.sunrise}</p>
+        <p>Sunset: {time.sunset}</p>
+      </div>
     </div>
   );
 }

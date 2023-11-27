@@ -35,10 +35,10 @@ html,body {
 
 }
 
-.widgets-container > div {
+.widgets-container > * {
   /* Common styles for all widgets */
 
-
+  flex-grow: 1;
 
 }
 
@@ -50,7 +50,7 @@ html,body {
 .hotspots-widget {
   /* Styles for HotspotWidget */
   flex: 1;
-
+ flex-shrink: 0;
   border-color: blueviolet;
   border-style: solid;
   border-width: 1px;

@@ -24,7 +24,7 @@ function App() {
   return (
 
     <Container fluid className="App">
-      <TopBar className='top-bar'/>
+      <TopBar destination={destination} className='top-bar'/>
       <div className='widgets-container'>
         <HotspotsWidget className='hotspots-widget'/>
         <MapWidget className='map-widget'/>

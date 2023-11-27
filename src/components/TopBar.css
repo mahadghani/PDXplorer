@@ -1,0 +1,10 @@
+.top-bar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center; /* Optional, for vertical alignment */
+    /* Add other styling like padding, background, etc., as needed */
+    min-height: 100px;
+}
+.top-bar > * {
+    flex: 1;
+}
