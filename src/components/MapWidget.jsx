@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './MapWidget.css';
+/* Adding layers: https://leafletjs.com/examples/layers-control/ */
 
 const MapWidget = () => {
   const position = [45.5051, -122.6750]; // Porland Coordinates

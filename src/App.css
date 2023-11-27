@@ -99,6 +99,10 @@ flex: 1;
   color: #ffffff;
 }
 
+.weather-widget {
+  margin: 10px !important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

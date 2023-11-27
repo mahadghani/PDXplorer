@@ -9,6 +9,7 @@ import TrimetWidget from './components/TrimetWidget';
 import BiketownWidget from './components/BiketownWidget';
 import HotspotsWidget from './components/HotspotsWidget';
 import TopBar from './components/TopBar';
+import Weather from'./components/Weather';
 
 function App() {
   const [showCard, setShowCard] = useState(true);
@@ -32,7 +33,7 @@ function App() {
           <BiketownWidget className='biketown-widget'/>
         </div>
       </div>
-      <div className='weather-widget'>{/*Weather widget goes here*/}<h2>Weather widget</h2></div>
+      <Weather className='weather-widget'/>
       {showCard ? <LandingCard onGoClick={handleGoClick} /> : <h1>Destination: {destination}</h1>}
       {/*displays destination info when card not shown*/}
     </Container>
