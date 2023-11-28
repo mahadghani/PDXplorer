@@ -19,9 +19,9 @@ const useMapEffect = (map,position) => {
     }
   },[map,position]);
 };
-
+const portlandPosition = [45.5051, -122.6750]; // Portland Coordinates
 const MapWidget = ({eventsLayer,trimetLayer,biketownLayer, destination, updateDestination, updateGeoCoord}) => {
-  const portlandPosition = [45.5051, -122.6750]; // Portland Coordinates
+
   const [position, setPosition] = useState(portlandPosition); // set initial position
   const mapRef = useRef(null);
 
@@ -45,7 +45,7 @@ const MapWidget = ({eventsLayer,trimetLayer,biketownLayer, destination, updateDe
       }
           };
     handleLocationInput().then( );
-  },[destination])
+  },[destination,  updateDestination, updateGeoCoord]); // useEffect
 
   const MapComponent = () => {
     const map = useMap();

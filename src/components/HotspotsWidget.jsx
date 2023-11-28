@@ -15,11 +15,14 @@ const HotspotsWidget = ({ destination , updateLayer, coordinates}) => {
         headers: {
           'Content-Type': 'application/json',
           'X-Goog-Api-Key': api.key,
-          'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.types' // Adjust fields as necessary
+          // 'X-Goog-FieldMask': 'places.displayName,places.shortFormattedAddress,places.types' // Adjust fields as necessary
+          'X-Goog-FieldMask': '*' // Adjust fields as necessary
+          //fields shortFormattedAddress, displayName, editorialSummary,
+          // location, rating, websiteUri
         },
         body: JSON.stringify({
           includedTypes: ["restaurant"], // Specify the types of places you're interested in
-          maxResultCount: 10,
+          maxResultCount: 5,
           locationRestriction: {
             circle: {
               center: {
@@ -53,7 +56,7 @@ const HotspotsWidget = ({ destination , updateLayer, coordinates}) => {
       } catch (error) {
         // This catch block handles network errors
         console.error("Network error:", error);
-      };
+      }
 
 
 
@@ -63,16 +66,30 @@ const HotspotsWidget = ({ destination , updateLayer, coordinates}) => {
     }
 
 
-  }); // useEffect
+  },[destination,coordinates]); // useEffect
+  useEffect(() => {
+    if (hotspots && hotspots.length > 0) {
+      //prepare data for sending back to App state
+      const updatedHotspots = hotspots.map(hotspot => ([
+        hotspot.displayName?.text,
+        [
+          parseFloat(hotspot.location.latitude), parseFloat(hotspot.location.longitude)
+        ]
+      ]));
+      updateLayer(updatedHotspots);
+    }
+  },[hotspots]);
   return (
     <div className="hotspots-widget">
       <h2>Nearby Hotspots</h2>
       <ul>
-        {/*{hotspots.map((hotspot, index) => (*/}
-        {/*  <li key={index}>{hotspot.displayName?.text}</li> // Adjust according to the data structure*/}
-        {/*))}*/}
+        {hotspots.map((hotspot, index) => (
+          <li key={index}>{hotspot.displayName?.text}</li> // Adjust according to the data structure
+        ))}
       </ul>
     </div>
   );
 }
 export default HotspotsWidget;
+
+
