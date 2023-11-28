@@ -39,7 +39,7 @@ return(
       <TopBar destination={destination} className='top-bar'/>
       <div className='widgets-container'>
         <HotspotsWidget updateLayer={updateEventsLayer} className='hotspots-widget'/>
-        <MapWidget eventsLayer={eventsLayer} trimetLayer={trimetLayer} biketownLayer={biketownLayer} className='map-widget'/>
+        <MapWidget eventsLayer={eventsLayer} trimetLayer={trimetLayer} biketownLayer={biketownLayer} destination={destination} className='map-widget'/>
         <div className='right-column'>
           <TrimetWidget updateLayer={updateTrimetLayer} className='trimet-widget'/>
           <BiketownWidget updateLayer={updateBiketownLayer} className='biketown-widget'/>
