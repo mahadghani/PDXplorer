@@ -38,6 +38,7 @@ const MapWidget = ({eventsLayer,trimetLayer,biketownLayer, destination, updateDe
           }
           else {
             setPosition(portlandPosition);
+            updateDestination('Portland OR (City Center)');
           }
         }
       }
