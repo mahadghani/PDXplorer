@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TrimetWidget = () => {
+const TrimetWidget = ({updateLayer}) => {
   return (
     <div className="trimet-widget">
       {/* Trimet info goes here */}
