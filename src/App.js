@@ -19,6 +19,7 @@ function App() {
   const [biketownLayer, setBiketownLayer] = useState([]);
   const [geocodedDestName, setGeocodedDestName] = useState(''); //state to
   // store geocoded destination
+  const [geocodedDestCoord, setGeocodedDestCoord] = useState([]);
 
   const handleGoClick = (inputValue) => {
     setDestination(inputValue); //update state with input value
@@ -40,8 +41,8 @@ return(
     <Container fluid className="App">
       <TopBar destination={geocodedDestName? geocodedDestName : destination} className='top-bar'/>
       <div className='widgets-container'>
-        <HotspotsWidget updateLayer={updateEventsLayer} className='hotspots-widget'/>
-        <MapWidget eventsLayer={eventsLayer} trimetLayer={trimetLayer} biketownLayer={biketownLayer} destination={destination} updateDestination={setGeocodedDestName} className='map-widget'/>
+        <HotspotsWidget updateLayer={updateEventsLayer} destination={geocodedDestName} coordinates={geocodedDestCoord} className='hotspots-widget'/>
+        <MapWidget eventsLayer={eventsLayer} trimetLayer={trimetLayer} biketownLayer={biketownLayer} destination={destination} updateDestination={setGeocodedDestName} updateGeoCoord={setGeocodedDestCoord} className='map-widget'/>
         <div className='right-column'>
           <TrimetWidget updateLayer={updateTrimetLayer} className='trimet-widget'/>
           <BiketownWidget updateLayer={updateBiketownLayer} className='biketown-widget'/>

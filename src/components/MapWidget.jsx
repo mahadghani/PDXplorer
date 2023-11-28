@@ -20,7 +20,7 @@ const useMapEffect = (map,position) => {
   },[map,position]);
 };
 
-const MapWidget = ({eventsLayer,trimetLayer,biketownLayer, destination, updateDestination}) => {
+const MapWidget = ({eventsLayer,trimetLayer,biketownLayer, destination, updateDestination, updateGeoCoord}) => {
   const portlandPosition = [45.5051, -122.6750]; // Portland Coordinates
   const [position, setPosition] = useState(portlandPosition); // set initial position
   const mapRef = useRef(null);
@@ -28,17 +28,18 @@ const MapWidget = ({eventsLayer,trimetLayer,biketownLayer, destination, updateDe
   useEffect(() => {
     const handleLocationInput = async () => {
       if(destination){
-        const coordinates = await getCoordinatesFromGeocoding(destination,updateDestination);
+        const coordinates = await getCoordinatesFromGeocoding(destination,updateDestination, updateGeoCoord);
         if (coordinates && isWithinPortland(coordinates)){
           setPosition(coordinates);
         }else {
-          const localizedCoordinates = await getCoordinatesFromGeocoding(destination + ' Portland OR',updateDestination);
+          const localizedCoordinates = await getCoordinatesFromGeocoding(destination + ' Portland OR',updateDestination, updateGeoCoord);
           if (localizedCoordinates && isWithinPortland(localizedCoordinates)){
             setPosition(localizedCoordinates);
           }
           else {
             setPosition(portlandPosition);
             updateDestination('Portland OR (City Center)');
+            updateGeoCoord(portlandPosition);
           }
         }
       }
@@ -85,7 +86,7 @@ function removeAddressSuffix(inString) {
   const pattern = /, Portland, Multnomah County, Oregon \d{5}, United States$/;
   return inString.replace(pattern,', Portland OR');
 }
-const getCoordinatesFromGeocoding = async (locationText, updateDestination) => {
+const getCoordinatesFromGeocoding = async (locationText, updateDestination, updateGeoCoord) => {
   const url = new URL('https://nominatim.openstreetmap.org/search');
   const params = {
     q: locationText,
@@ -101,6 +102,7 @@ const getCoordinatesFromGeocoding = async (locationText, updateDestination) => {
     if (data.length > 0)  {
       const {lat,lon} = data[0];
       updateDestination(removeAddressSuffix(data[0].display_name));
+      updateGeoCoord([parseFloat(lat),parseFloat(lon)]);
       return [parseFloat(lat),parseFloat(lon)];
     }
     return null;
