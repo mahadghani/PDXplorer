@@ -1,11 +1,15 @@
 import React from 'react';
 
-const BiketownWidget = () => {
+const BiketownWidget = ({updateLayer}) => {
+  /* DO stuff*/
+  /*Update the layer*/
+
   return (
     <div className="biketown-widget">
-      {/* Biketown info goes here */}
+
       <p>Biketown Widget</p>
     </div>
+
   );
 };
 

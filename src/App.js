@@ -14,27 +14,39 @@ import Weather from'./components/Weather';
 function App() {
   const [showCard, setShowCard] = useState(true);
   const [destination, setDestination] = useState(''); //state to store destination
-
+  const [eventsLayer, setEventsLayer] = useState([]);
+  const [trimetLayer, setTrimetLayer] = useState([]);
+  const [biketownLayer, setBiketownLayer] = useState([]);
 
   const handleGoClick = (inputValue) => {
     setDestination(inputValue); //update state with input value
     setShowCard(false);
     console.log('input value: ', inputValue);
   };
-  return (
+  const updateEventsLayer = (layer) => {
+    if(layer) setEventsLayer(layer);
+  };
+  const updateTrimetLayer = (layer) => {
+    if (layer)setTrimetLayer(layer);
+  };
+  const updateBiketownLayer = (layer) => {
+    if(layer)setBiketownLayer(layer);
+  };
 
+
+return(
     <Container fluid className="App">
       <TopBar destination={destination} className='top-bar'/>
       <div className='widgets-container'>
-        <HotspotsWidget className='hotspots-widget'/>
-        <MapWidget className='map-widget'/>
+        <HotspotsWidget updateLayer={updateEventsLayer} className='hotspots-widget'/>
+        <MapWidget eventsLayer={eventsLayer} trimetLayer={trimetLayer} biketownLayer={biketownLayer} className='map-widget'/>
         <div className='right-column'>
-          <TrimetWidget className='trimet-widget'/>
-          <BiketownWidget className='biketown-widget'/>
+          <TrimetWidget updateLayer={updateTrimetLayer} className='trimet-widget'/>
+          <BiketownWidget updateLayer={updateBiketownLayer} className='biketown-widget'/>
         </div>
       </div>
       <Weather className='weather-widget'/>
-      {showCard ? <LandingCard onGoClick={handleGoClick} /> : <h1>Destination: {destination}</h1>}
+      {showCard ? <LandingCard onGoClick={handleGoClick} /> : <p>Destination: {destination}</p>}
       {/*displays destination info when card not shown*/}
     </Container>
 

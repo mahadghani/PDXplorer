@@ -1,11 +1,18 @@
 import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  LayerGroup,
+} from 'react-leaflet'
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './MapWidget.css';
 /* Adding layers: https://leafletjs.com/examples/layers-control/ */
+// want to be able to import layers as a prop
 
-const MapWidget = () => {
+const MapWidget = ({eventsLayer,trimetLayer,biketownLayer}) => {
   const position = [45.5051, -122.6750]; // Porland Coordinates
 
   //webpack icon fix from leaflet.js documentation
@@ -28,6 +35,9 @@ const MapWidget = () => {
             <h3>This is a sample popup. <br /> Replace this with user Destination.</h3>
           </Popup>
         </Marker>
+        {eventsLayer && <LayerGroup>{eventsLayer}</LayerGroup>}
+        {trimetLayer && <LayerGroup>{trimetLayer}</LayerGroup>}
+        {biketownLayer && <LayerGroup>{biketownLayer}</LayerGroup>}
       </MapContainer>
   );
 };
