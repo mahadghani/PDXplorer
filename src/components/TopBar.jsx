@@ -5,7 +5,7 @@ import './TopBar.css'
 const TopBar = ({destination}) => {
   return (
     <div className="top-bar">
-      <Suntime />
+      <Suntime className='suntime-class' />
       {/* Additional components or navigation can go here */}
       <div className='header-text'>
      <h1>{destination}</h1>
