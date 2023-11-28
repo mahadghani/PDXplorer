@@ -9,6 +9,7 @@ import {
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './MapWidget.css';
+import haversine from 'haversine'; //calculates distance between two points
 /* Adding layers: https://leafletjs.com/examples/layers-control/ */
 // want to be able to import layers as a prop
 const useMapEffect = (map,position) => {
@@ -19,7 +20,7 @@ const useMapEffect = (map,position) => {
   },[map,position]);
 };
 
-const MapWidget = ({eventsLayer,trimetLayer,biketownLayer, destination}) => {
+const MapWidget = ({eventsLayer,trimetLayer,biketownLayer, destination, updateDestination}) => {
   const portlandPosition = [45.5051, -122.6750]; // Portland Coordinates
   const [position, setPosition] = useState(portlandPosition); // set initial position
   const mapRef = useRef(null);
@@ -27,9 +28,17 @@ const MapWidget = ({eventsLayer,trimetLayer,biketownLayer, destination}) => {
   useEffect(() => {
     const handleLocationInput = async () => {
       if(destination){
-        const coordinates = await getCoordinatesFromGeocoding(destination);
-        if (isWithinPortland(coordinates)){
+        const coordinates = await getCoordinatesFromGeocoding(destination,updateDestination);
+        if (coordinates && isWithinPortland(coordinates)){
           setPosition(coordinates);
+        }else {
+          const localizedCoordinates = await getCoordinatesFromGeocoding(destination + ' Portland OR',updateDestination);
+          if (localizedCoordinates && isWithinPortland(localizedCoordinates)){
+            setPosition(localizedCoordinates);
+          }
+          else {
+            setPosition(portlandPosition);
+          }
         }
       }
           };
@@ -42,25 +51,6 @@ const MapWidget = ({eventsLayer,trimetLayer,biketownLayer, destination}) => {
     return null;
   }
 
-  // useEffect(() => {
-  //   const handleLocationInput = async (locationText) => {
-  //     const coordinates = await getCoordinatesFromGeocoding(locationText);
-  //     if(isWithinPortland(coordinates)){
-  //       setPosition(coordinates);
-  //       if(mapRef.current){
-  //         mapRef.current.setView(coordinates, 13);
-  //       }
-  //     }else {
-  //       setPosition([45.5051,-122.6750]);
-  //       if(mapRef.current){
-  //         mapRef.current.setView(portlandPosition, 13);
-  //       }
-  //     }
-  //   };
-  //   if(destination) {
-  //     handleLocationInput(destination).then(() => {});
-  //   }
-  // },[destination]);
   //webpack icon fix from leaflet.js documentation
   delete L.Icon.Default.prototype._getIconUrl;
   L.Icon.Default.mergeOptions({
@@ -90,13 +80,17 @@ const MapWidget = ({eventsLayer,trimetLayer,biketownLayer, destination}) => {
 };
 
 export default MapWidget;
-
-const getCoordinatesFromGeocoding = async (locationText) => {
+function removeAddressSuffix(inString) {
+  const pattern = /, Portland, Multnomah County, Oregon \d{5}, United States$/;
+  return inString.replace(pattern,', Portland OR');
+}
+const getCoordinatesFromGeocoding = async (locationText, updateDestination) => {
   const url = new URL('https://nominatim.openstreetmap.org/search');
   const params = {
     q: locationText,
     format: 'json',
-    limit: 1
+    limit: 1,
+    namedetails: 1
   };
   url.search = new URLSearchParams(params).toString();
 
@@ -105,6 +99,7 @@ const getCoordinatesFromGeocoding = async (locationText) => {
     const data = await response.json();
     if (data.length > 0)  {
       const {lat,lon} = data[0];
+      updateDestination(removeAddressSuffix(data[0].display_name));
       return [parseFloat(lat),parseFloat(lon)];
     }
     return null;
@@ -116,5 +111,9 @@ const getCoordinatesFromGeocoding = async (locationText) => {
 
 const isWithinPortland = (coordinates) => {
   //check if coordinates are within 20 miles of Portland
-  return true;
+  const portlandCoordinates = {latitude: 45.5051,longitude:-122.67};
+  const locationCoordinates = {latitude: coordinates[0], longitude: coordinates[1]};
+
+  const distance = haversine(portlandCoordinates, locationCoordinates, {unit: 'mile'});
+  return distance <= 20;
 }
