@@ -1,0 +1,29 @@
+/* Umbrella.css */
+.umbrella-app {
+  max-width: 300px;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 18px;
+  margin: 20px;
+}
+
+.rainy,
+.rainy p {
+  background-color: #1a2b53; /* Light blue for rainy condition */
+  color: white;
+}
+
+.sunny {
+  background-color: #cfe0f0; /* Light orange for sunny condition */
+  color: #333;
+  font-weight: bold;
+}
+
+.umbrella-app p {
+  font-size: large;
+}
+
+.umbrella-app img {
+  max-width: 120px;
+}
