@@ -6,6 +6,7 @@ html,body {
   overflow: hidden;
 }
 
+
 .App {
   height: 100vh;
   width: 100vw;
@@ -13,16 +14,16 @@ html,body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: #020D36;
+  background-color: rgb(34,35,42);
 }
 
 .top-bar {
   width: 100%;
   height: 12.5vh;
 
-  border-color: aqua;
-  border-style: solid;
-  border-width: 1px;
+  /*border-color: aqua;*/
+  /*border-style: solid;*/
+  /*border-width: 1px;*/
 }
 
 /*.widgets-container {*/
@@ -53,6 +54,7 @@ html,body {
 .weather-widget {
   width: 100%;
   height: 25vh;
+
 }
 
 .hotspots-widget {
@@ -60,9 +62,9 @@ html,body {
   /*display: flex;*/
   /*flex: 1;*/
  /*flex-shrink: 0;*/
-  border-color: blueviolet;
-  border-style: solid;
-  border-width: 1px;
+ /* border-color: blueviolet;*/
+ /* border-style: solid;*/
+ /* border-width: 1px;*/
 
 }
 
@@ -82,9 +84,8 @@ html,body {
   height: 100% ;
   width: 40vw;
 
-  border-color: deeppink;
-  border-style: solid;
-  border-width: 3px;
+
+
 }
 
 
@@ -93,15 +94,20 @@ html,body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  justify-items: center;
+  align-items: center;
+  padding:10px;
 /*flex: 1;*/
 }
+
 .biketown-widget, .trimet-widget {
   /* Styles for BiketownWidget and TrimetWidget */
   flex: 1; /* they will each take up equal height */
+  background-color: rgba(255,255,255,.3) !important;
 
-  border-color: blueviolet;
-  border-style: solid;
-  border-width: 1px;
+  /*border-color: blueviolet;*/
+  /*border-style: solid;*/
+  /*border-width: 1px;*/
 }
 
 .ui.container, .ui.header, .ui.text {

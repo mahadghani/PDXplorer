@@ -36,15 +36,15 @@ function Umbrella() {
   return (
     <div className={`umbrella-app ${isRaining ? "rainy" : "sunny"}`}>
       {isRaining ? (
-        <div>
+        <>
           <img src={logoSrc} alt="Umbrella" />
-          <p>It's raining. Don't forget your umbrella!</p>
-        </div>
+          <p>It's rainy!</p>
+        </>
       ) : (
-        <div>
+       <>
           <img src={logoSrc} alt="Sky" />
-          <p>No rain. No need for an umbrella!</p>
-        </div>
+          <p>No umbrella.</p>
+        </>
       )}
     </div>
   );

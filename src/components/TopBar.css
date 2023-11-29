@@ -4,11 +4,12 @@
     align-items: center; /* Optional, for vertical alignment */
     /* Add other styling like padding, background, etc., as needed */
     min-height: 100px;
+    background-color: rgb(48,48,61);
 }
 /*.top-bar > * {*/
 /*    flex: 1;*/
 /*}*/
-.suntime-class, .placeholder {
+.suntime-class, .umbrella-class {
     flex: 0 0 auto;
     font-size: 0.8em;
     margin: 0 10px;
@@ -16,4 +17,8 @@
 .header-text {
     flex: 1;
     text-align: center;
+}
+.umbrella-class {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
