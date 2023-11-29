@@ -11,7 +11,7 @@ function AQ() {
   const [airPollutionData, setAirPollutionData] = useState(null);
 
   useEffect(() => {
-    if(!api.key) return;
+    if (!api.key) return;
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -28,7 +28,7 @@ function AQ() {
   }, []);
 
   if (!airPollutionData) {
-    return <div className='air-quality-widget'>Loading...</div>;
+    return <div className="air-quality-widget">Loading...</div>;
   }
 
   const { current } = airPollutionData.data;

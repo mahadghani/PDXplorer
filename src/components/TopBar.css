@@ -1,25 +1,26 @@
 .top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Optional, for vertical alignment */
-    /* Add other styling like padding, background, etc., as needed */
-    min-height: 100px;
-    background-color: rgb(48,48,61);
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Optional, for vertical alignment */
+  /* Add other styling like padding, background, etc., as needed */
+  min-height: 100px;
+  background-color: rgb(48, 48, 61);
 }
 /*.top-bar > * {*/
 /*    flex: 1;*/
 /*}*/
-.suntime-class, .right-side-widgets {
-    flex: 0 0 auto;
-    font-size: 0.8em;
-    margin: 0 10px;
+.suntime-class,
+.right-side-widgets {
+  flex: 0 0 auto;
+  font-size: 0.8em;
+  margin: 0 10px;
 }
 .header-text {
-    flex: 1;
-    text-align: center;
+  flex: 1;
+  text-align: center;
 }
 .right-side-widgets {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: end;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: end;
 }

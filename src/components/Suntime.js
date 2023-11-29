@@ -22,13 +22,13 @@ function Suntime() {
       } catch (error) {
         console.error("Error fetching weather data:", error);
       }
-
     };
     fetchTime().then();
-  },[]);
+  }, []);
 
   useEffect(() => {
-    const updateCurrentTime = () => { //update every second
+    const updateCurrentTime = () => {
+      //update every second
       const now = new Date();
       const hours = now.getHours();
       const minutes = now.getMinutes();
@@ -40,22 +40,24 @@ function Suntime() {
       const AMPM = hours >= 12 ? "PM" : "AM";
 
       setCurrentTime(
-        `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${hours > 12? "PM" : "AM"}`
+        `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${
+          hours > 12 ? "PM" : "AM"
+        }`
       );
       console.log(time.sunrise, time.sunset);
-      if(time.sunrise && time.sunset) {
+      if (time.sunrise && time.sunset) {
         //conver to 24h format
         const convertTo24h = (timeStr) => {
           const [hour, minute, modifier] = timeStr.split(/:| /);
           let convertedHour = parseInt(hour, 10);
-          if (modifier === 'PM' && convertedHour < 12) {
+          if (modifier === "PM" && convertedHour < 12) {
             convertedHour += 12;
-          } else if (modifier === 'AM' && convertedHour === 12) {
+          } else if (modifier === "AM" && convertedHour === 12) {
             convertedHour = 0;
           }
-          return convertedHour * 60 + parseInt(minute,10); //minutes since
+          return convertedHour * 60 + parseInt(minute, 10); //minutes since
           // midnight
-        }
+        };
         const sunriseMins = convertTo24h(time.sunrise);
         const sunsetMins = convertTo24h(time.sunset);
 
@@ -63,9 +65,8 @@ function Suntime() {
         console.log(currentMins, sunriseMins, sunsetMins);
         setIsDaytime(currentMins >= sunriseMins && currentMins < sunsetMins);
       }
-
     };
-    if(time.sunrise && time.sunset) {
+    if (time.sunrise && time.sunset) {
       const intervalId = setInterval(updateCurrentTime, 1000);
 
       return () => clearInterval(intervalId);
@@ -77,12 +78,13 @@ function Suntime() {
 
   return (
     <div className="suntime-container">
-      <div className='left-column'>
+      <div className="left-column">
         <img className="weather-logo" src={logoSrc} alt="Weather Logo" />
       </div>
-      <div className='right-column'>
-      <p className={timeClass}>{isDaytime ? "It's Day!" : "It's" +
-        " Night!"}</p>
+      <div className="right-column">
+        <p className={timeClass}>
+          {isDaytime ? "It's Day!" : "It's" + " Night!"}
+        </p>
         <p className={timeClass}>Current Time: {currentTime}</p>
         <p>Sunrise: {time.sunrise}</p>
         <p>Sunset: {time.sunset}</p>

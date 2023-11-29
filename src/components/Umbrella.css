@@ -9,30 +9,26 @@
   max-height: 110px;
   display: grid;
   grid-template-rows: 2fr 1fr;
-  align-content:center;
+  align-content: center;
   justify-items: center;
   margin-left: 2px;
 }
 
 .rainy,
 .rainy p {
-
   color: white;
 }
 
 .sunny {
-
   color: #333;
   font-weight: bold;
 }
 
 .umbrella-app p {
   font-size: large;
-
 }
 
 .umbrella-app img {
- width: 100%;
+  width: 100%;
   max-width: 70px;
-
 }

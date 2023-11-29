@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Weather.css";
 
 const api = {
-
-  key: process.env.REACT_APP_WEATHER_API_KEY
+  key: process.env.REACT_APP_WEATHER_API_KEY,
 };
 
 function Weather() {
