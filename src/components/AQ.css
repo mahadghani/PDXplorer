@@ -3,55 +3,69 @@
 .air-quality-widget {
   color: #333;
   background-color: #f9f9f9;
- padding: 15px;
+ /*padding: 15px;*/
   margin-right: 2px;
-  max-width: 300px;
-  border-radius: 10px;
+  max-width: 400px;
+  border-radius: 8px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
   background-color: rgba(255,255,255, 0.3);
   max-height: 110px;
+    align-content: center;
+    align-items: center;
+    height: 70%;
+
 
 }
 
-.air-quality-widget h2 {
-  text-align: center;
-}
 
 .good {
-  background-color: #5eba5e; /* Soft green */
+  background-color: rgba(94, 186, 94, 0.5); /* Soft green */
   color: #fff;
 }
 
 .moderate {
-  background-color: #f0e669; /* Soft yellow */
+  background-color: rgba(240, 230, 105, 0.4); /* Soft yellow */
 }
 
 .unhealthy-sensitive {
-  background-color: #ffa45e; /* Soft orange */
+  background-color: rgba(255, 164, 94, 0.5); /* Soft orange */
 }
 
 .unhealthy {
-  background-color: #f57575; /* Soft red */
+  background-color: rgba(245, 117, 117, 0.5); /* Soft red */
   color: #fff;
 }
 
 .current-air-quality {
-  margin-top: 20px;
+ height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 2fr 2fr 3fr;
+    justify-items: center;
+    align-content: center;
+    /*padding: 15px;*/
+
+}
+.current-air-quality p {
+    justify-content: center;
+    align-content: center;
 }
 
 /* Additional styling for a pleasant look and feel */
-h2 {
-  color: #333;
-  font-size: 24px; /* Larger font size for h2 */
-}
+
 
 p {
-  margin: 10px 0; /* Adjusted margin */
+  /*margin: 10px 0; !* Adjusted margin *!*/
   font-size: 16px; /* Larger font size for p */
   color: #333;
+    margin-bottom: 0 !important;
+    margin-left: 5px !important;
+    /*margin*/
 }
 
 strong p {
   font-size: 19px;
-  padding: 5px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+
 }

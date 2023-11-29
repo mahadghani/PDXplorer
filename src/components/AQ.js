@@ -50,15 +50,13 @@ function AQ() {
   }
 
   return (
-    <div className={`air-quality-widget ${pollutionLevel}`}>
-      <h2>Air Quality in Portland</h2>
-
+    <div className={`air-quality-widget `}>
       <div className="current-air-quality">
         <p>{`AQI (US): ${pollution.aqius}`}</p>
         <p>{`Main Pollutant (US): ${pollution.mainus}`}</p>
         <strong>
           <p
-            className={`${pollutionLevel}`}
+            className={pollutionLevel}
           >{`Overall Quality: ${pollutionDescription}!`}</p>
         </strong>
       </div>

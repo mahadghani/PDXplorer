@@ -12,7 +12,7 @@ const TopBar = ({destination}) => {
       <div className='header-text'>
      <h1>{destination}</h1>
       </div>
-      <div className='umbrella-class'>
+      <div className='right-side-widgets'>
         <AQ />
         <Umbrella />
       </div>

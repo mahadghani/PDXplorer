@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './HotspotsWidget.css';
-import { Card } from 'semantic-ui-react';
+import { Button, Card } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 
 
@@ -100,11 +100,11 @@ const HotspotsWidget = ({ destination , updateLayer, coordinates}) => {
       {/* ... other content ... */}
       <Card.Group className="card-group">
         {hotspots.map((hotspot, index) => (
-          <Card key={index} className="small-card" onClick={() => toggleCardExpansion(index)}>
-            <Card.Content className="card-header-content">
-              <Card.Header className='card-title'>{hotspot.displayName?.text}</Card.Header>
+          <Card key={index} className="small-card" >
+            <Card.Content className="card-header-content" >
+              <Card.Header className='card-title' onClick={() => toggleCardExpansion(index)}>{hotspot.displayName?.text}</Card.Header>
               <div className="card-link">
-                <a href={hotspot.websiteUri} target="_blank" rel="noopener noreferrer">Visit Website</a>
+                <Button as='a' href={hotspot.websiteUri} className='fixed-width-button' target="_blank" rel="noopener noreferrer" size='small' color='blue'>Visit Website</Button>
               </div>
             </Card.Content>
             {/* Other card content */}
