@@ -3,16 +3,18 @@
 import React, { useState, useEffect } from "react";
 import "./AQ.css";
 
+const api = {
+  key: process.env.REACT_APP_AQ_API_KEY,
+};
+
 function AQ() {
   const [airPollutionData, setAirPollutionData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const apikey = "1c8d1755-dd1f-4178-9061-156bc45489e8";
-
       try {
         const response = await fetch(
-          `http://api.airvisual.com/v2/nearest_city?lat=45.523064&lon=-122.67648&key=${apikey}`
+          `http://api.airvisual.com/v2/nearest_city?lat=45.523064&lon=-122.67648&key=${api.key}`
         );
         const data = await response.json();
         setAirPollutionData(data);
