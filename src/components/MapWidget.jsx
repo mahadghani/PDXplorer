@@ -4,7 +4,7 @@ import {
   TileLayer,
   Marker,
   Popup,
-  LayerGroup, useMap,
+  useMap,
 } from 'react-leaflet'
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -12,12 +12,20 @@ import './MapWidget.css';
 import haversine from 'haversine'; //calculates distance between two points
 /* Adding layers: https://leafletjs.com/examples/layers-control/ */
 // want to be able to import layers as a prop
-const useMapEffect = (map,position) => {
+const useMapEffect = (map,position,layers) => { // layers is an array of
+  // LayerGroup objects
   useEffect(() => {
     if(map && position) {
       map.setView(position, 13);
     }
-  },[map,position]);
+console.log('layer group: ',layers);
+    if(map && layers && layers.Events) {
+      const layerControl = L.control.layers(null, layers).addTo(map);
+      return () => {
+        layerControl.remove();
+      };
+    }
+  },[map,position, layers]);
 };
 const portlandPosition = [45.5051, -122.6750]; // Portland Coordinates
 const MapWidget = ({eventsLayer,trimetLayer,biketownLayer, destination, updateDestination, updateGeoCoord}) => {
@@ -49,7 +57,44 @@ const MapWidget = ({eventsLayer,trimetLayer,biketownLayer, destination, updateDe
 
   const MapComponent = () => {
     const map = useMap();
-    useMapEffect(map,position);
+
+    /* Functions to convert states to LayerGroup */
+    const eventLayerGroup = createLayerGroup(eventsLayer);
+
+    function createLayerGroup(rawLayer) {
+      if (!rawLayer || rawLayer.length === 0) {
+        return null;
+      }
+      function createMarker(event) {
+        const lat = event[1];
+        const lng = event[2];
+        const name = event[0]
+        // console.log('Mapped event: ', event);
+        return L.marker([lat,lng]).bindPopup(name);
+      }
+      const markers = rawLayer.map((event)=>{
+        return createMarker(event);
+      });
+
+      return L.layerGroup(markers);
+    }
+    const trimetLayerGroup = () => {
+      return null;
+    }
+    const biketownLayerGroup = () => {
+      return null;
+    }
+
+    // layer groups
+    const layerGroups = {
+
+      'Events': eventsLayer ? eventLayerGroup: null
+      // 'Trimet': trimetLayer? trimetLayerGroup:null,
+      // 'Biketown': biketownLayer? biketownLayerGroup:null
+    }
+    console.log('layerGroups in map: ', eventsLayer)
+
+    useMapEffect(map,position, layerGroups);
     return null;
   }
 
@@ -74,9 +119,10 @@ const MapWidget = ({eventsLayer,trimetLayer,biketownLayer, destination, updateDe
             <h3>{destination}</h3>
           </Popup>
         </Marker>
-        {eventsLayer && <LayerGroup>{eventsLayer}</LayerGroup>}
-        {trimetLayer && <LayerGroup>{trimetLayer}</LayerGroup>}
-        {biketownLayer && <LayerGroup>{biketownLayer}</LayerGroup>}
+        {/*Layers are controlled via the MapComponent*/}
+        {/*{eventsLayer && <LayerGroup>{eventsLayer}</LayerGroup>}*/}
+        {/*{trimetLayer && <LayerGroup>{trimetLayer}</LayerGroup>}*/}
+        {/*{biketownLayer && <LayerGroup>{biketownLayer}</LayerGroup>}*/}
       </MapContainer>
   );
 };
