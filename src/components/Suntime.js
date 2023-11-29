@@ -41,14 +41,14 @@ function Suntime() {
 
       setCurrentTime(
         `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${
-          hours > 12 ? "PM" : "AM"
+          hours >= 12 ? "PM" : "AM"
         }`
       );
       console.log(time.sunrise, time.sunset);
       if (time.sunrise && time.sunset) {
         //conver to 24h format
         const convertTo24h = (timeStr) => {
-          const [hour, minute, modifier] = timeStr.split(/:| /);
+          const [hour, minute, ,modifier] = timeStr.split(/:| /);
           let convertedHour = parseInt(hour, 10);
           if (modifier === "PM" && convertedHour < 12) {
             convertedHour += 12;
