@@ -1,6 +1,8 @@
 import React from 'react';
 import Suntime from './Suntime.js'
 import './TopBar.css'
+import Umbrella from './Umbrella.js'
+import AQ from './AQ.js'
 
 const TopBar = ({destination}) => {
   return (
@@ -10,8 +12,9 @@ const TopBar = ({destination}) => {
       <div className='header-text'>
      <h1>{destination}</h1>
       </div>
-      <div className='placeholder'>
-        <h2>Placeholder</h2>
+      <div className='umbrella-class'>
+        <AQ />
+        <Umbrella />
       </div>
     </div>
   );

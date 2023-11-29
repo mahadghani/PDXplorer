@@ -1,6 +1,7 @@
-.App {
-  text-align: center;
-}
+/*.App {*/
+/*  text-align: center;*/
+/*  background-color:black;*/
+/*}*/
 
 /*.App-header {*/
 /*  background-color: #282c34;*/
@@ -17,21 +18,24 @@ p {
   align-items: center;
   flex-direction: column;
   justify-content: stretch ;
-  padding: 10px
+  padding: 10px;
+
+  max-width:100%;
+  max-height: 100%;
 }
 
 .weather-container {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #fff;
+  background-color: rgba(255,255,255,0.5);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   flex-grow: 1;
   width: 80vw;
-  height: 23vh;
+  height: auto;
 }
 
 .location {

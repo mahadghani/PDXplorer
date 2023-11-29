@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css';
-import { Container } from 'semantic-ui-react';
+import { Card, Container, List } from 'semantic-ui-react'
 
 import LandingCard from './components/Card';
 import MapWidget from './components/MapWidget';
@@ -10,6 +10,7 @@ import BiketownWidget from './components/BiketownWidget';
 import HotspotsWidget from './components/HotspotsWidget';
 import TopBar from './components/TopBar';
 import Weather from'./components/Weather';
+
 
 function App() {
   const [showCard, setShowCard] = useState(true);
@@ -47,8 +48,24 @@ return(
         <HotspotsWidget updateLayer={updateEventsLayer} destination={geocodedDestName} coordinates={geocodedDestCoord} className='hotspots-widget'/>
         <MapWidget eventsLayer={eventsLayer} trimetLayer={trimetLayer} biketownLayer={biketownLayer} destination={destination} updateDestination={setGeocodedDestName} updateGeoCoord={setGeocodedDestCoord} className='map-widget'/>
         <div className='right-column'>
-          <TrimetWidget updateLayer={updateTrimetLayer} className='trimet-widget'/>
-          <BiketownWidget updateLayer={updateBiketownLayer} className='biketown-widget'/>
+          {/*<TrimetWidget updateLayer={updateTrimetLayer} className='trimet-widget'/>*/}
+          {/*<BiketownWidget updateLayer={updateBiketownLayer} className='biketown-widget'/>*/}
+          <Card className='trimet-widget'>
+            <Card.Content>
+              <Card.Header>Trimet Information</Card.Header>
+              <List>
+                {/* Populate with relevant Trimet data */}
+              </List>
+            </Card.Content>
+          </Card>
+          <Card className='biketown-widget'>
+            <Card.Content>
+              <Card.Header>Biketown Information</Card.Header>
+              <List>
+                {/* Populate with relevant Biketown data */}
+              </List>
+            </Card.Content>
+          </Card>
         </div>
       </div>
       <Weather className='weather-widget'/>
