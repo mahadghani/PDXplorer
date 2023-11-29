@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react'
 import './HotspotsWidget.css';
+import { Card } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
+
 
 const api = {
   key: process.env.REACT_APP_GOOGLE_API_KEY
@@ -7,7 +10,9 @@ const api = {
 
 const HotspotsWidget = ({ destination , updateLayer, coordinates}) => {
   const [hotspots, setHotspots] = useState([]);
+  const [expandedCard, setExpandedCard] = useState(null);
 
+  /* Fetch hotspots useEffect() */
   useEffect(() => {
     const fetchHotspots = async () => {
       const requestOptions = {
@@ -67,6 +72,8 @@ const HotspotsWidget = ({ destination , updateLayer, coordinates}) => {
 
 
   },[destination,coordinates]); // useEffect
+
+  /*hotspots useeffect() */
   useEffect(() => {
     if (hotspots && hotspots.length > 0) {
       //prepare data for sending back to App state
@@ -79,17 +86,40 @@ const HotspotsWidget = ({ destination , updateLayer, coordinates}) => {
       updateLayer(updatedHotspots);
     }
   },[hotspots]);
+
+
+
+  const toggleCardExpansion = (index) => {
+    if (expandedCard === index) {
+      setExpandedCard(null); // Collapse the card if it's already expanded
+    } else {
+      setExpandedCard(index); // Expand the selected card
+    }
+  };
+
   return (
     <div className="hotspots-widget">
-      <h2>Nearby Hotspots</h2>
-      <ul>
+      {/* ... other content ... */}
+      <Card.Group className="card-group">
         {hotspots.map((hotspot, index) => (
-          <li key={index}>{hotspot.displayName?.text}</li> // Adjust according to the data structure
+          <Card key={index} className="small-card" onClick={() => toggleCardExpansion(index)}>
+            <Card.Content className="card-header-content">
+              <Card.Header className='card-title'>{hotspot.displayName?.text}</Card.Header>
+              <div className="card-link">
+                <a href={hotspot.websiteUri} target="_blank" rel="noopener noreferrer">Visit Website</a>
+              </div>
+            </Card.Content>
+            {/* Other card content */}
+            {expandedCard === index && (
+              <div className="card-description">
+                {hotspot.editorialSummary?.text}
+              </div>
+            )}
+          </Card>
         ))}
-      </ul>
+      </Card.Group>
     </div>
   );
-}
+};
+
 export default HotspotsWidget;
-
-
