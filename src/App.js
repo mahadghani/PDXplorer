@@ -28,12 +28,15 @@ function App() {
   };
   const updateEventsLayer = (layer) => {
     if(layer) setEventsLayer(layer);
+    console.log('layer: ', layer);
   };
   const updateTrimetLayer = (layer) => {
     if (layer)setTrimetLayer(layer);
+    console.log('layer: ', layer);
   };
   const updateBiketownLayer = (layer) => {
     if(layer)setBiketownLayer(layer);
+    console.log('layer: ',layer);
   };
 
 

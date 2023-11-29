@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import './HotspotsWidget.css';
 import { Card } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
@@ -78,10 +78,8 @@ const HotspotsWidget = ({ destination , updateLayer, coordinates}) => {
     if (hotspots && hotspots.length > 0) {
       //prepare data for sending back to App state
       const updatedHotspots = hotspots.map(hotspot => ([
-        hotspot.displayName?.text,
-        [
-          parseFloat(hotspot.location.latitude), parseFloat(hotspot.location.longitude)
-        ]
+        hotspot.displayName?.text, parseFloat(hotspot.location.latitude), parseFloat(hotspot.location.longitude)
+
       ]));
       updateLayer(updatedHotspots);
     }
