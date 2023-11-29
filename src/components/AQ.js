@@ -11,7 +11,7 @@ function AQ() {
   const [airPollutionData, setAirPollutionData] = useState(null);
 
   useEffect(() => {
-    if(!api.key) return;
+    if (!api.key) return;
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -28,7 +28,7 @@ function AQ() {
   }, []);
 
   if (!airPollutionData) {
-    return <div className='air-quality-widget'>Loading...</div>;
+    return <div className="air-quality-widget">Loading...</div>;
   }
 
   const { current } = airPollutionData.data;
@@ -50,15 +50,13 @@ function AQ() {
   }
 
   return (
-    <div className={`air-quality-widget ${pollutionLevel}`}>
-      <h2>Air Quality in Portland</h2>
-
+    <div className={`air-quality-widget `}>
       <div className="current-air-quality">
         <p>{`AQI (US): ${pollution.aqius}`}</p>
         <p>{`Main Pollutant (US): ${pollution.mainus}`}</p>
         <strong>
           <p
-            className={`${pollutionLevel}`}
+            className={pollutionLevel}
           >{`Overall Quality: ${pollutionDescription}!`}</p>
         </strong>
       </div>

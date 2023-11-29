@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import "./Suntime.css";
 import dayLogo from "../Pictures/sun.png";
 import nightLogo from "../Pictures/night.png";
-import "./Suntime.css";
 
 function Suntime() {
   const [time, setTime] = useState({});
@@ -24,8 +23,12 @@ function Suntime() {
         console.error("Error fetching weather data:", error);
       }
     };
+    fetchTime().then();
+  }, []);
 
+  useEffect(() => {
     const updateCurrentTime = () => {
+      //update every second
       const now = new Date();
       const hours = now.getHours();
       const minutes = now.getMinutes();
@@ -37,62 +40,51 @@ function Suntime() {
       const AMPM = hours >= 12 ? "PM" : "AM";
 
       setCurrentTime(
-        `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${AMPM}`
+        `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${
+          hours > 12 ? "PM" : "AM"
+        }`
       );
-     let riseComponents, riseHours, riseMinutes, sunriseString, sunsetString, setComponents, setHours, setMinutes;
-      if(time.sunrise && time.sunset) {
-         sunriseString = time.sunrise;
-         riseComponents = sunriseString.split(/:| /);
-         riseHours = parseInt(riseComponents[0], 10);
-         riseMinutes = parseInt(riseComponents[1], 10);
+      console.log(time.sunrise, time.sunset);
+      if (time.sunrise && time.sunset) {
+        //conver to 24h format
+        const convertTo24h = (timeStr) => {
+          const [hour, minute, modifier] = timeStr.split(/:| /);
+          let convertedHour = parseInt(hour, 10);
+          if (modifier === "PM" && convertedHour < 12) {
+            convertedHour += 12;
+          } else if (modifier === "AM" && convertedHour === 12) {
+            convertedHour = 0;
+          }
+          return convertedHour * 60 + parseInt(minute, 10); //minutes since
+          // midnight
+        };
+        const sunriseMins = convertTo24h(time.sunrise);
+        const sunsetMins = convertTo24h(time.sunset);
 
-         sunsetString = time.sunset;
-         setComponents = sunsetString.split(/:| /);
-        setHours = parseInt(setComponents[0], 10);
-         setMinutes = parseInt(setComponents[1], 10);
-      }
-      if (AMPM === "AM") {
-        if (formattedHours < riseHours) {
-          setIsDaytime(false);
-        } else if (formattedHours > riseHours) {
-          setIsDaytime(true);
-        } else if (formattedMinutes < riseMinutes) {
-          setIsDaytime(false);
-        } else {
-          setIsDaytime(true);
-        }
-      } else {
-        if (formattedHours > setHours) {
-          setIsDaytime(false);
-        } else if (formattedHours < setHours) {
-          setIsDaytime(true);
-        } else if (formattedMinutes > setMinutes) {
-          setIsDaytime(false);
-        } else {
-          setIsDaytime(true);
-        }
+        const currentMins = hours * 60 + minutes;
+        console.log(currentMins, sunriseMins, sunsetMins);
+        setIsDaytime(currentMins >= sunriseMins && currentMins < sunsetMins);
       }
     };
+    if (time.sunrise && time.sunset) {
+      const intervalId = setInterval(updateCurrentTime, 1000);
 
-    fetchTime();
-    updateCurrentTime();
-
-    const intervalId = setInterval(updateCurrentTime, 1000);
-
-    return () => clearInterval(intervalId);
-  }, [time]);
+      return () => clearInterval(intervalId);
+    }
+  }, [time.sunrise, time.sunset]);
 
   const logoSrc = isDaytime ? dayLogo : nightLogo;
   const timeClass = isDaytime ? "daytime" : "nighttime";
 
   return (
     <div className="suntime-container">
-      <div className='left-column'>
+      <div className="left-column">
         <img className="weather-logo" src={logoSrc} alt="Weather Logo" />
       </div>
-      <div className='right-column'>
-      <p className={timeClass}>{isDaytime ? "It's Day!" : "It's" +
-        " Night!"}</p>
+      <div className="right-column">
+        <p className={timeClass}>
+          {isDaytime ? "It's Day!" : "It's" + " Night!"}
+        </p>
         <p className={timeClass}>Current Time: {currentTime}</p>
         <p>Sunrise: {time.sunrise}</p>
         <p>Sunset: {time.sunset}</p>

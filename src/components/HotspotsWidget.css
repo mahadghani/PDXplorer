@@ -1,49 +1,52 @@
 .hotspots-widget {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /*Align cards at the top*/
-    justify-content: center; /*Space cards evenly*/
-    padding: 10px;
-    width: 100%
+  display: flex;
+  flex-direction: column;
+  align-items: center; /*Align cards at the top*/
+  justify-content: center; /*Space cards evenly*/
+  padding: 10px;
+  width: 100%;
 }
 .card-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /*Align cards at the top*/
-    justify-content: center; /*Space cards evenly*/
-    padding: 10px;
-    width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /*Align cards at the top*/
+  justify-content: center; /*Space cards evenly*/
+  padding: 10px;
+  width: 100%;
 }
 
 .card {
-    width: auto;
-    height: auto;
-    margin: 5px;
-    padding: 5px;
+  width: auto;
+  height: auto;
+  margin: 5px;
+  padding: 5px;
 }
 
 .small-card {
-    width: 100px;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    background-color: rgba(255,255,255,0.3) !important;
-
+  width: 100px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.3) !important;
 }
 
 .card-header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    line-height:1.2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 1.2;
 }
 
 .card-title {
-    margin-right: auto;
+  margin-right: auto;
 }
 
 .card-link {
-    margin-left: auto;
+  margin-left: auto;
 }
 .card-description {
-    padding: 10px;
-    background-color: rgba(255,255,255,0.6)
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.17);
+}
+
+.fixed-width-button {
+  width: 80px;
 }

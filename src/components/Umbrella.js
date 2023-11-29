@@ -41,7 +41,7 @@ function Umbrella() {
           <p>It's rainy!</p>
         </>
       ) : (
-       <>
+        <>
           <img src={logoSrc} alt="Sky" />
           <p>No umbrella.</p>
         </>

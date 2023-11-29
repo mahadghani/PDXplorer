@@ -1,9 +1,9 @@
 .map-container {
-    height: 100%;
-    width: 50vw;
-    border-radius: 10px;
-    margin-top: 5px;
+  height: 100%;
+  width: 50vw;
+  border-radius: 10px;
+  margin-top: 5px;
 }
 .container {
-    height: auto;
+  height: auto;
 }
