@@ -62,14 +62,14 @@ function App() {
           className="map-widget"
         />
         <div className="right-column">
-          {/*<TrimetWidget updateLayer={updateTrimetLayer} className='trimet-widget'/>*/}
+          <TrimetWidget updateLayer={updateTrimetLayer} coordinates={geocodedDestCoord} className='trimet-widget'/>
           {/*<BiketownWidget updateLayer={updateBiketownLayer} className='biketown-widget'/>*/}
-          <Card className="trimet-widget">
-            <Card.Content>
-              <Card.Header>Trimet Information</Card.Header>
-              <List>{/* Populate with relevant Trimet data */}</List>
-            </Card.Content>
-          </Card>
+          {/*<Card className="trimet-widget">*/}
+          {/*  <Card.Content>*/}
+          {/*    <Card.Header>Trimet Information</Card.Header>*/}
+          {/*    <List>/!* Populate with relevant Trimet data *!/</List>*/}
+          {/*  </Card.Content>*/}
+          {/*</Card>*/}
           <Card className="biketown-widget">
             <Card.Content>
               <Card.Header>Biketown Information</Card.Header>

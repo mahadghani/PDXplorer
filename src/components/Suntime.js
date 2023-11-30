@@ -44,7 +44,6 @@ function Suntime() {
           hours >= 12 ? "PM" : "AM"
         }`
       );
-      console.log(time.sunrise, time.sunset);
       if (time.sunrise && time.sunset) {
         //conver to 24h format
         const convertTo24h = (timeStr) => {
@@ -62,7 +61,6 @@ function Suntime() {
         const sunsetMins = convertTo24h(time.sunset);
 
         const currentMins = hours * 60 + minutes;
-        console.log(currentMins, sunriseMins, sunsetMins);
         setIsDaytime(currentMins >= sunriseMins && currentMins < sunsetMins);
       }
     };

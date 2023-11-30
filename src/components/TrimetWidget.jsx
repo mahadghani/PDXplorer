@@ -43,7 +43,7 @@ function TrimetWidget({ coordinates, trimetLayer }) {
     };
 
     fetchData();
-  }, []); // Run once when the component mounts
+  }, [coordinates]); // Run once when the component mounts
 
   return (
     <div>

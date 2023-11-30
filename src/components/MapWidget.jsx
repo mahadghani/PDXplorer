@@ -13,7 +13,6 @@ const useMapEffect = (map, position, layers) => {
     if (map && position) {
       map.setView(position, 13);
     }
-    console.log("layer group: ", layers);
     if (map && layers && layers.Events) {
       const layerControl = L.control.layers(null, layers).addTo(map);
       return () => {
@@ -99,7 +98,6 @@ const MapWidget = ({
       // 'Trimet': trimetLayer? trimetLayerGroup:null,
       // 'Biketown': biketownLayer? biketownLayerGroup:null
     };
-    console.log("layerGroups in map: ", eventsLayer);
 
     useMapEffect(map, position, layerGroups);
     return null;
