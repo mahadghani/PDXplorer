@@ -8,7 +8,7 @@ const api = {
   base: "https://developer.trimet.org/ws/V1/trips/tripplanner",
 };
 
-function TrimetWidget({ coordinates }) {
+function TrimetWidget({ coordinates, setLayer }) {
   const [itineraries, setItineraries] = useState([]);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function TrimetWidget({ coordinates }) {
             // Other fields can be included as necessary
           };
         });
-
+        setLayer(tripLegs);
         setItineraries(tripLegs);
       } catch (error) {
         console.error("Error fetching Trimet data:", error);
