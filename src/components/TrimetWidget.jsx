@@ -29,7 +29,11 @@ function TrimetWidget({ coordinates, setLayer }) {
             mode: leg.attributes.mode,
             duration: leg.getElementsByTagName('duration')[0].value,
             distance: leg.getElementsByTagName('distance')[0].value,
-            // Other fields can be included as necessary
+            fromLat: leg.getElementsByTagName('from')[0].getElementsByTagName('lat')[0].value,
+            fromLon: leg.getElementsByTagName('from')[0].getElementsByTagName('lon')[0].value,
+            destLat: leg.getElementsByTagName('to')[0].getElementsByTagName('lat')[0].value,
+            destLon: leg.getElementsByTagName('to')[0].getElementsByTagName('lon')[0].value,
+            direction: leg.getElementsByTagName('direction')[0].value
           };
         });
         setLayer(tripLegs);

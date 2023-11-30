@@ -4,8 +4,43 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./MapWidget.css";
 import haversine from "haversine"; //calculates distance between two points
+import bikeIconPath from "../Pictures/bike-icon.png";
 /* Adding layers: https://leafletjs.com/examples/layers-control/ */
 // want to be able to import layers as a prop
+const bikeIcon = L.icon({
+  iconUrl: bikeIconPath,
+  iconSize: [50,50],
+  iconAnchor: [12, 25],
+  popupAnchor: [0, 0]
+});
+
+const createBiketownLayerGroup = (biketownLayer) => {
+  if (!biketownLayer || biketownLayer.length === 0) {
+    return null;
+  }
+
+  const markers = biketownLayer.map(coordinate => {
+    return L.marker([coordinate[0], coordinate[1]], { icon: bikeIcon });
+  });
+
+  return L.layerGroup(markers);
+};
+const createTrimetLayerGroup = (trimetLayer) => {
+  if (!trimetLayer || trimetLayer.length === 0) {
+    return null;
+  }
+
+  const routeLines = trimetLayer.map(segment => {
+    const from = [segment.fromLat, segment.fromLon];
+    const to = [segment.destLat, segment.destLon];
+
+    const line = L.polyline([from, to], { color: 'blue' }); // You can customize the color
+    line.bindPopup(`Mode: ${segment.mode}, Duration: ${segment.duration} mins, Distance: ${segment.distance} km`);
+    return line;
+  });
+
+  return L.layerGroup(routeLines);
+};
 const useMapEffect = (map, position, layers) => {
   // layers is an array of
   // LayerGroup objects
@@ -68,6 +103,9 @@ const MapWidget = ({
     /* Functions to convert states to LayerGroup */
     const eventLayerGroup = createLayerGroup(eventsLayer);
 
+    const trimetLayerGroup = trimetLayer ? createTrimetLayerGroup(trimetLayer) : null;
+    const biketownLayerGroup = biketownLayer ? createBiketownLayerGroup(biketownLayer) : null;
+
     function createLayerGroup(rawLayer) {
       if (!rawLayer || rawLayer.length === 0) {
         return null;
@@ -85,18 +123,14 @@ const MapWidget = ({
 
       return L.layerGroup(markers);
     }
-    const trimetLayerGroup = () => {
-      return null;
-    };
-    const biketownLayerGroup = () => {
-      return null;
-    };
+
+
 
     // layer groups
     const layerGroups = {
       Events: eventsLayer ? eventLayerGroup : null,
-      // 'Trimet': trimetLayer? trimetLayerGroup:null,
-      // 'Biketown': biketownLayer? biketownLayerGroup:null
+      Trimet:  trimetLayerGroup,
+      Biketown: biketownLayer? biketownLayerGroup:null
     };
 
     useMapEffect(map, position, layerGroups);
