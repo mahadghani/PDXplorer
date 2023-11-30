@@ -1,0 +1,209 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.App {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgb(34, 35, 42);
+}
+
+.top-bar {
+  width: 100%;
+  height: 12.5vh;
+
+  /*border-color: aqua;*/
+  /*border-style: solid;*/
+  /*border-width: 1px;*/
+}
+
+/*.widgets-container {*/
+/*  display: flex;*/
+/*  justify-content: space-between;*/
+/*  height: 62.5vh;*/
+/*  width: 100%;*/
+/*  flex-grow: 0;*/
+
+/*}*/
+.widgets-container {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+  justify-content: center;
+  margin-top: 12.5vh;
+}
+
+.widgets-container > * {
+  /* Common styles for all widgets */
+
+  /*flex-grow: 1;*/
+}
+
+
+.weather-widget {
+  width: 100%;
+  height: 25vh;
+}
+
+.hotspots-widget {
+  /* Styles for HotspotWidget */
+  /*display: flex;*/
+  /*flex: 1;*/
+  /*flex-shrink: 0;*/
+  /* border-color: blueviolet;*/
+  /* border-style: solid;*/
+  /* border-width: 1px;*/
+}
+
+.map-widget {
+  /* Styles for MapWidget */
+
+  max-width: 100%;
+  max-height: 100%;
+  /*flex: 2;*/
+
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 40vw;
+}
+
+.right-column {
+  display: flex;
+ flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10px;
+  /*flex: 1;*/
+}
+
+.biketown-widget,
+.trimet-widget {
+  /* Styles for BiketownWidget and TrimetWidget */
+/* they will each take up equal height */
+  background-color: rgba(255, 255, 255, 0.3) !important;
+
+  /*border-color: blueviolet;*/
+  /*border-style: solid;*/
+  /*border-width: 1px;*/
+}
+
+.ui.container,
+.ui.header,
+.ui.text {
+  color: #ffffff;
+}
+
+.weather-widget {
+  margin: 10px !important;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ui.container {
+}
+
+@media screen and (max-width: 768px) {
+  .App {
+    flex-direction: column;
+  }
+  .widgets-container {
+    grid-template-columns: 1fr;
+  }
+  .right-column {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  html, body {
+    overflow-y: auto;
+  }
+
+  .App {
+    height: auto; /* Adjust height to be auto to accommodate the vertical stacking */
+    flex-direction: column; /* Stack elements vertically */
+  }
+
+  .widgets-container {
+    grid-template-columns: 1fr; /* Adjust the grid for a single column layout */
+    height: auto;
+  }
+
+  .map-widget {
+    width: 100%; /* Adjust width for smaller screens */
+    order: 1;
+
+
+
+    display:block;
+    justify-content: center;
+    align-items: center;
+   height: 80vh !important;
+    width: 80vw;
+  }
+  .hotspots-widget {
+    order: 2;
+  }
+  .widgets-container > right-column {
+    order: 3;
+  }
+  .top-bar {
+    height: auto; /* Adjust height to accommodate the vertical layout */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center align the children if needed */
+  }
+
+  .top-bar > * {
+    width: 100%; /* Ensure child elements take full width */
+  }
+  /* Add other necessary adjustments for smaller screens here */
+}

@@ -52,7 +52,7 @@ function TrimetWidget({ coordinates, setLayer }) {
       </Card.Content>
       {itineraries.length > 0 && (
         <Card.Content className='card-content-area card-description'>
-          <List ordered>
+          <List ordered divided>
             {itineraries.map((leg, index) => (
               <List.Item key={index}>
                 <p>{leg.mode} {leg.duration} minutes | {leg.distance}mi</p>

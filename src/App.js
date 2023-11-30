@@ -70,12 +70,13 @@ function App() {
           {/*    <List>/!* Populate with relevant Trimet data *!/</List>*/}
           {/*  </Card.Content>*/}
           {/*</Card>*/}
-          <Card className="biketown-widget">
-            <Card.Content>
-              <Card.Header>Biketown Information</Card.Header>
-              <List>{/* Populate with relevant Biketown data */}</List>
-            </Card.Content>
-          </Card>
+          {/*<Card className="biketown-widget">*/}
+          {/*  <Card.Content>*/}
+          {/*    <Card.Header>Biketown Information</Card.Header>*/}
+          {/*    <List>/!* Populate with relevant Biketown data *!/</List>*/}
+          {/*  </Card.Content>*/}
+          {/*</Card>*/}
+          <BiketownWidget updateLayer={updateBiketownLayer} coordinates={geocodedDestCoord} className="biketown"/>
         </div>
       </div>
       <Weather className="weather-widget" />
