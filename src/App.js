@@ -62,7 +62,7 @@ function App() {
           className="map-widget"
         />
         <div className="right-column">
-          <TrimetWidget updateLayer={updateTrimetLayer} coordinates={geocodedDestCoord} className='trimet-widget'/>
+          <TrimetWidget setLayer={updateTrimetLayer} coordinates={geocodedDestCoord} className='trimet-widget'/>
           {/*<BiketownWidget updateLayer={updateBiketownLayer} className='biketown-widget'/>*/}
           {/*<Card className="trimet-widget">*/}
           {/*  <Card.Content>*/}

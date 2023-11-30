@@ -9,13 +9,13 @@
   height: 90%;
   display: flex;
 }
-.left-column {
+.suntime-container >.left-column {
   flex: 1; /* Adjust this value as needed */
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.right-column {
+.suntime-container > .right-column {
   flex: 3; /* Adjust this value as needed */
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@
   /*padding: px;*/
   /*overflow: hidden;*/
 }
-.right-column p {
+.suntime-container > .right-column p {
   font-size: 1em;
   line-height: 1;
   margin-bottom: 4px;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Header, List } from 'semantic-ui-react'
+import { Card, Header, List } from 'semantic-ui-react'
 import XMLParser from 'react-xml-parser';
 import './TrimetWidget.css'
 
@@ -46,18 +46,22 @@ function TrimetWidget({ coordinates, setLayer }) {
   }, [coordinates]);
 
   return (
-    <div>
-      <Header as='h2'>Trimet Itinerary</Header>
+    <Card className='trimet-container'>
+      <Card.Content className='card-header'>
+        <Card.Header>Trimet Itinerary</Card.Header>
+      </Card.Content>
       {itineraries.length > 0 && (
-        <List>
-          {itineraries.map((leg, index) => (
-            <List.Item key={index}>
-              <p>{leg.mode} {leg.duration} minutes | {leg.distance}mi</p>
-            </List.Item>
-          ))}
-        </List>
+        <Card.Content className='card-content-area card-description'>
+          <List ordered>
+            {itineraries.map((leg, index) => (
+              <List.Item key={index}>
+                <p>{leg.mode} {leg.duration} minutes | {leg.distance}mi</p>
+              </List.Item>
+            ))}
+          </List>
+        </Card.Content>
       )}
-    </div>
+    </Card>
   );
 }
 
