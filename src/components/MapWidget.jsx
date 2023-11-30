@@ -6,6 +6,23 @@ import "./MapWidget.css";
 import haversine from "haversine"; //calculates distance between two points
 /* Adding layers: https://leafletjs.com/examples/layers-control/ */
 // want to be able to import layers as a prop
+
+const createTrimetLayerGroup = (trimetLayer) => {
+  if (!trimetLayer || trimetLayer.length === 0) {
+    return null;
+  }
+
+  const routeLines = trimetLayer.map(segment => {
+    const from = [segment.fromLat, segment.fromLon];
+    const to = [segment.destLat, segment.destLon];
+
+    const line = L.polyline([from, to], { color: 'blue' }); // You can customize the color
+    line.bindPopup(`Mode: ${segment.mode}, Duration: ${segment.duration} mins, Distance: ${segment.distance} km`);
+    return line;
+  });
+
+  return L.layerGroup(routeLines);
+};
 const useMapEffect = (map, position, layers) => {
   // layers is an array of
   // LayerGroup objects
@@ -68,6 +85,9 @@ const MapWidget = ({
     /* Functions to convert states to LayerGroup */
     const eventLayerGroup = createLayerGroup(eventsLayer);
 
+    const trimetLayerGroup = trimetLayer ? createTrimetLayerGroup(trimetLayer) : null;
+
+
     function createLayerGroup(rawLayer) {
       if (!rawLayer || rawLayer.length === 0) {
         return null;
@@ -85,9 +105,7 @@ const MapWidget = ({
 
       return L.layerGroup(markers);
     }
-    const trimetLayerGroup = () => {
-      return null;
-    };
+
     const biketownLayerGroup = () => {
       return null;
     };
@@ -95,7 +113,7 @@ const MapWidget = ({
     // layer groups
     const layerGroups = {
       Events: eventsLayer ? eventLayerGroup : null,
-      // 'Trimet': trimetLayer? trimetLayerGroup:null,
+      Trimet:  trimetLayerGroup,
       // 'Biketown': biketownLayer? biketownLayerGroup:null
     };
 
