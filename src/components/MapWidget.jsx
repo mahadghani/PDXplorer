@@ -4,9 +4,27 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./MapWidget.css";
 import haversine from "haversine"; //calculates distance between two points
+import bikeIconPath from "../Pictures/bike-icon.png";
 /* Adding layers: https://leafletjs.com/examples/layers-control/ */
 // want to be able to import layers as a prop
+const bikeIcon = L.icon({
+  iconUrl: bikeIconPath,
+  iconSize: [50,50],
+  iconAnchor: [12, 25],
+  popupAnchor: [0, 0]
+});
 
+const createBiketownLayerGroup = (biketownLayer) => {
+  if (!biketownLayer || biketownLayer.length === 0) {
+    return null;
+  }
+
+  const markers = biketownLayer.map(coordinate => {
+    return L.marker([coordinate[0], coordinate[1]], { icon: bikeIcon });
+  });
+
+  return L.layerGroup(markers);
+};
 const createTrimetLayerGroup = (trimetLayer) => {
   if (!trimetLayer || trimetLayer.length === 0) {
     return null;
@@ -86,7 +104,7 @@ const MapWidget = ({
     const eventLayerGroup = createLayerGroup(eventsLayer);
 
     const trimetLayerGroup = trimetLayer ? createTrimetLayerGroup(trimetLayer) : null;
-
+    const biketownLayerGroup = biketownLayer ? createBiketownLayerGroup(biketownLayer) : null;
 
     function createLayerGroup(rawLayer) {
       if (!rawLayer || rawLayer.length === 0) {
@@ -106,15 +124,13 @@ const MapWidget = ({
       return L.layerGroup(markers);
     }
 
-    const biketownLayerGroup = () => {
-      return null;
-    };
+
 
     // layer groups
     const layerGroups = {
       Events: eventsLayer ? eventLayerGroup : null,
       Trimet:  trimetLayerGroup,
-      // 'Biketown': biketownLayer? biketownLayerGroup:null
+      Biketown: biketownLayer? biketownLayerGroup:null
     };
 
     useMapEffect(map, position, layerGroups);
