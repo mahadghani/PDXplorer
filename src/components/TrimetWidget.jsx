@@ -1,65 +1,67 @@
 import React, { useState, useEffect } from "react";
+import { Card, Header, List } from 'semantic-ui-react'
+import XMLParser from 'react-xml-parser';
+import './TrimetWidget.css'
 
 const api = {
   key: process.env.REACT_APP_TRIMET_API_KEY,
   base: "https://developer.trimet.org/ws/V1/trips/tripplanner",
 };
 
-function TrimetWidget({ coordinates, trimetLayer }) {
+function TrimetWidget({ coordinates, setLayer }) {
   const [itineraries, setItineraries] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://developer.trimet.org/ws/V1/trips/tripplanner/fromCoord/-122.679223,45.518911/toCoord/${coordinates[1]},${coordinates[0]}/appId/${api.key}`
-        );
-        console.log(
-          `https://developer.trimet.org/ws/V1/trips/tripplanner/fromCoord/-122.679223,45.518911/toCoord/${coordinates[1]},${coordinates[0]}/appId/${api.key}`
-        );
+        const url = `${api.base}/fromCoord/-122.679223,45.518911/toCoord/${coordinates[1]},${coordinates[0]}/MaxItineraries/1/appId/${api.key}`;
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
         const data = await response.text();
-        // Parse XML data
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(data, "text/xml");
-        const itinerariesList = xmlDoc.querySelectorAll("itinerary");
-        const itinerariesData = Array.from(itinerariesList).map((itinerary) => {
-          const id = itinerary.getAttribute("id");
-          const viaRoute = itinerary.getAttribute("viaRoute");
-          const startTime = itinerary.querySelector("startTime").textContent;
-          const endTime = itinerary.querySelector("endTime").textContent;
-          const duration = itinerary.querySelector("duration").textContent;
+        let xml = new XMLParser().parseFromString(data);
 
+        const itinerariesList = xml.getElementsByTagName('itinerary');
+        console.log('mode' , itinerariesList[0].children.slice(2)[0].attributes.mode);
+        let tripLegs = itinerariesList[0].children.slice(2).map(leg => {
           return {
-            id,
-            viaRoute,
-            startTime,
-            endTime,
-            duration,
+            mode: leg.attributes.mode,
+            duration: leg.getElementsByTagName('duration')[0].value,
+            distance: leg.getElementsByTagName('distance')[0].value,
+            // Other fields can be included as necessary
           };
         });
-        setItineraries(itinerariesData);
+        setLayer(tripLegs);
+        setItineraries(tripLegs);
       } catch (error) {
         console.error("Error fetching Trimet data:", error);
       }
     };
 
-    fetchData();
-  }, [coordinates]); // Run once when the component mounts
+    // Check if coordinates are available before making the API call
+    if (coordinates && coordinates.length === 2) {
+      fetchData();
+    }
+  }, [coordinates]);
 
   return (
-    <div>
-      <h2>Trimet Itineraries</h2>
-      <ul>
-        {itineraries.map((itinerary) => (
-          <li key={itinerary.id}>
-            <p>ID: {itinerary.id}</p>
-            <p>Via Route: {itinerary.viaRoute}</p>
-            <p>Start Time: {itinerary.startTime}</p>
-            <p>End Time: {itinerary.endTime}</p>
-            <p>Duration: {itinerary.duration} minutes</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Card className='trimet-container'>
+      <Card.Content className='card-header'>
+        <Card.Header>Trimet Itinerary</Card.Header>
+      </Card.Content>
+      {itineraries.length > 0 && (
+        <Card.Content className='card-content-area card-description'>
+          <List ordered>
+            {itineraries.map((leg, index) => (
+              <List.Item key={index}>
+                <p>{leg.mode} {leg.duration} minutes | {leg.distance}mi</p>
+              </List.Item>
+            ))}
+          </List>
+        </Card.Content>
+      )}
+    </Card>
   );
 }
 
