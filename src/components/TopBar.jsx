@@ -10,7 +10,7 @@ const TopBar = ({ destination }) => {
       <Suntime className="suntime-class" />
       {/* Additional components or navigation can go here */}
       <div className="header-text">
-        <h1>{destination}</h1>
+        <h1>{truncateAfterPortland(destination)}</h1>
       </div>
       <div className="right-side-widgets">
         <AQ />
@@ -21,3 +21,16 @@ const TopBar = ({ destination }) => {
 };
 
 export default TopBar;
+
+function truncateAfterPortland(text) {
+  const searchTerm = ', Portland';
+  const index = text.indexOf(searchTerm);
+
+  if (index !== -1) {
+    // Return the substring up to and including ',Portland'
+    return text.substring(0, index);
+  } else {
+    // Return the original text if ',Portland' is not found
+    return text;
+  }
+}

@@ -2,21 +2,28 @@ html,
 body {
   margin: 0;
   padding: 0;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
+  min-height: 100%;
+  /*height: 100vh;*/
+  /*width: 100vw;*/
+  overflow: scroll;
 }
 
 .App {
-  height: 100vh;
+  min-height: 100vh;
+  /*height: 100vh;*/
   width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   background-color: rgb(34, 35, 42);
-}
+  overflow-y: auto;
 
+}
+.top-bar, .widgets-container, .weather-widget {
+  flex-shrink: 0;
+  min-height: 100px;
+}
 .top-bar {
   width: 100%;
   height: 12.5vh;
@@ -38,9 +45,10 @@ body {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr; /* 1 fraction for left, 2 for middle, 1 for right */
   height: 62.5vh;
+  min-height: 625px;
   width: 100%;
   justify-content: center;
-  min-height: 250px;
+  margin-bottom:20px;
 }
 
 .widgets-container > * {
@@ -51,8 +59,11 @@ body {
 
 .weather-widget {
   width: 100%;
-  height: 25vh;
+
+  height: auto;
 }
+
+
 
 .hotspots-widget {
   /* Styles for HotspotWidget */
@@ -71,9 +82,9 @@ body {
   max-height: 100%;
   /*flex: 2;*/
 
-  overflow: hidden;
+  /*overflow: hidden;*/
 
-  display: flex;
+  /*display: flex;*/
   justify-content: center;
   align-items: center;
   height: 100%;
@@ -87,6 +98,8 @@ body {
   justify-items: center;
   align-items: center;
   padding: 10px;
+  max-height: 100%;
+  overflow: hidden;
   /*flex: 1;*/
 }
 
@@ -111,16 +124,8 @@ body {
   margin: 10px !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+
 
 .App-header {
   background-color: #282c34;
@@ -137,14 +142,54 @@ body {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media screen and (max-width: 768px) {
+  .widgets-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 400px 1fr;
   }
-  to {
-    transform: rotate(360deg);
+
+  .widgets-container > .map-widget {
+    grid-column: 1 / 2;
+    grid-row: 1;
+    grid-column-end: 2;
+    height: fit-content;
+    justify-content: center;
+
+
+  }
+
+  .widgets-container > .hotspots-widget {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .widgets-container> .right-column {
+    grid-column: 2;
+    grid-row:  2;
   }
 }
 
-.ui.container {
+@media screen and (max-width: 500px) {
+  .widgets-container {
+    display: flex;
+    flex-direction: column;
+
+
+    height: auto;
+    min-height: 625px;
+    width: 100%;
+    justify-content: center;
+    margin-bottom:20px;
+  }
+  .widgets-container > .map-widget {
+  order: 3;
+width: 100%
+
+  }
+
+  .widgets-container > .hotspots-widget {
+    order: 1;
+  }
+  .widgets-container> .right-column {
+order: 2;
+  }
 }

@@ -15,9 +15,9 @@ p {
 
 .weather-app {
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: stretch;
+  align-items: flex-end;
+  flex-direction: row;
+  justify-content: center;
   padding: 10px;
 
   max-width: 100%;
@@ -36,6 +36,8 @@ p {
   flex-grow: 1;
   width: 80vw;
   height: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .location {
@@ -76,8 +78,10 @@ p {
 .forecast-item {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .forecast-item p {
   font-size: medium;
+  padding: 2px;
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import "semantic-ui-css/semantic.min.css";
-import { Card, Container, List } from "semantic-ui-react";
+import {  Container } from "semantic-ui-react";
 
 import LandingCard from "./components/Card";
 import MapWidget from "./components/MapWidget";
@@ -88,11 +88,7 @@ function App() {
         </div>
       </div>
       <Weather className="weather-widget" />
-      {showCard ? (
-        <LandingCard onGoClick={handleGoClick} />
-      ) : (
-        <p className="makewhite">Destination: {destination}</p>
-      )}
+      {showCard && <LandingCard onGoClick={handleGoClick} />}
       {/*displays destination info when card not shown*/}
     </Container>
   );
