@@ -1,0 +1,12 @@
+o Jest test writing tutorial
+  - https://blog.logrocket.com/testing-react-apps-jest-react-testing-library/
+o Jest workaround
+  - https://stackoverflow.com/questions/54461150/jest-not-parsing-es6-syntaxerror-unexpected-token-import
+o How to conditionally put React component in (adding logic)
+o Semantic UI and how to use
+  - https://www.robinwieruch.de/react-semantic-ui-tutorial/
+o A bunch of leaflet tutorials
+  - https://leafletjs.com/examples.html
+  - https://blog.logrocket.com/react-leaflet-tutorial/
+o CSS text outline effect:
+  - https://stackoverflow.com/questions/4919076/outline-effect-to-text
