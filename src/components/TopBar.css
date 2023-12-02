@@ -1,14 +1,12 @@
 .top-bar {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Optional, for vertical alignment */
-  /* Add other styling like padding, background, etc., as needed */
+  align-items: center;
+
   min-height: 100px;
   background-color: rgb(48, 48, 61);
 }
-/*.top-bar > * {*/
-/*    flex: 1;*/
-/*}*/
+
 .suntime-class,
 .right-side-widgets {
   flex: 0 0 auto;
@@ -21,7 +19,6 @@
   justify-items: center;
   align-items: center;
   overflow: hidden;
-
 }
 .header-text > h1 {
   flex: 1;
@@ -29,7 +26,6 @@
   text-overflow: ellipsis;
   max-width: 100%;
   text-align: center;
-
 }
 .right-side-widgets {
   display: grid;
@@ -62,6 +58,5 @@
   }
   .right-side-widgets > * {
     flex-shrink: 0;
-
   }
 }

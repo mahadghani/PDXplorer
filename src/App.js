@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import "semantic-ui-css/semantic.min.css";
-import {  Container } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 
 import LandingCard from "./components/Card";
 import MapWidget from "./components/MapWidget";
@@ -67,19 +67,7 @@ function App() {
             coordinates={geocodedDestCoord}
             className="trimet-widget"
           />
-          {/*<BiketownWidget updateLayer={updateBiketownLayer} className='biketown-widget'/>*/}
-          {/*<Card className="trimet-widget">*/}
-          {/*  <Card.Content>*/}
-          {/*    <Card.Header>Trimet Information</Card.Header>*/}
-          {/*    <List>/!* Populate with relevant Trimet data *!/</List>*/}
-          {/*  </Card.Content>*/}
-          {/*</Card>*/}
-          {/*<Card className="biketown-widget">*/}
-          {/*  <Card.Content>*/}
-          {/*    <Card.Header>Biketown Information</Card.Header>*/}
-          {/*    <List>/!* Populate with relevant Biketown data *!/</List>*/}
-          {/*  </Card.Content>*/}
-          {/*</Card>*/}
+
           <BiketownWidget
             updateLayer={updateBiketownLayer}
             coordinates={geocodedDestCoord}

@@ -25,7 +25,11 @@ function AQ() {
     fetchData();
   }, []);
 
-  if (!airPollutionData || !airPollutionData.data || !airPollutionData.data.current) {
+  if (
+    !airPollutionData ||
+    !airPollutionData.data ||
+    !airPollutionData.data.current
+  ) {
     return <div className="air-quality-widget">Loadinge...</div>;
   }
 

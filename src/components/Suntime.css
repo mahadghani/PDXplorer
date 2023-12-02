@@ -1,8 +1,8 @@
 .suntime-container {
   max-width: 300px;
   margin: 5px;
-  padding: 20px;
-  /*border: 1px solid #ccc;*/
+  padding: 5px;
+
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.3);
@@ -11,39 +11,83 @@
 }
 
 .suntime-container > .left-column {
-  flex: 1; /* Adjust this value as needed */
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .suntime-container > .right-column {
-  flex: 3; /* Adjust this value as needed */
+  flex: 3;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /*padding: px;*/
-  /*overflow: hidden;*/
 }
 
 .suntime-container > .right-column p {
-  font-size: 1em;
-  line-height: 1;
-  margin-bottom: 4px;
+  font-size: 0.8em;
+  line-height: 2;
+  /*margin-bottom: 4px;*/
 }
 
 .weather-logo {
-  width: 60px; /* Adjust the width as needed */
+  width: 60px;
   height: auto;
   margin-bottom: 10px;
 }
 
 .daytime {
-  color: #4caf50; /* Green color for daytime */
+  color: white;
+  text-shadow: 0px 10px 0.02px #4caf50, 9.8px 2.1px 0.02px #4caf50,
+    4.2px -9.1px 0.02px #4caf50, -8px -6px 0.02px #4caf50,
+    -7.6px 6.5px 0.02px #4caf50, 4.8px 8.8px 0.02px #4caf50,
+    9.6px -2.8px 0.02px #4caf50, -0.7px -10px 0.02px #4caf50,
+    -9.9px -1.5px 0.02px #4caf50, -3.5px 9.4px 0.02px #4caf50,
+    8.4px 5.4px 0.02px #4caf50, 7.1px -7px 0.02px #4caf50,
+    -5.4px -8.4px 0.02px #4caf50, -9.4px 3.5px 0.02px #4caf50,
+    1.4px 9.9px 0.02px #4caf50, 10px 0.8px 0.02px #4caf50,
+    2.9px -9.6px 0.02px #4caf50, -8.7px -4.8px 0.02px #4caf50,
+    -6.6px 7.5px 0.02px #4caf50, 5.9px 8px 0.02px #4caf50,
+    9.1px -4.1px 0.02px #4caf50, -2.1px -9.8px 0.02px #4caf50,
+    -10px -0.1px 0.02px #4caf50, -2.2px 9.8px 0.02px #4caf50,
+    9.1px 4.2px 0.02px #4caf50, 6.1px -8px 0.02px #4caf50,
+    -6.5px -7.6px 0.02px #4caf50, -8.8px 4.7px 0.02px #4caf50,
+    2.7px 9.6px 0.02px #4caf50, 10px -0.6px 0.02px #4caf50,
+    1.5px -9.9px 0.02px #4caf50, -9.3px -3.6px 0.02px #4caf50,
+    -5.5px 8.4px 0.02px #4caf50, 7px 7.2px 0.02px #4caf50,
+    8.5px -5.3px 0.02px #4caf50, -3.4px -9.4px 0.02px #4caf50,
+    -9.9px 1.3px 0.02px #4caf50, -0.8px 10px 0.02px #4caf50,
+    9.6px 2.9px 0.02px #4caf50, 4.9px -8.7px 0.02px #4caf50,
+    -7.5px -6.7px 0.02px #4caf50, -8.1px 5.9px 0.02px #4caf50,
+    4px 9.2px 0.02px #4caf50, 9.8px -2px 0.02px #4caf50,
+    0.2px -10px 0.02px #4caf50, -9.7px -2.3px 0.02px #4caf50,
+    -4.3px 9px 0.02px #4caf50, 7.9px 6.1px 0.02px #4caf50;
 }
 
 .nighttime {
-  color: #34495e; /* Dark blue color for nighttime */
+  color: white;
+  text-shadow: 0px 10px 0.02px #34495e, 9.8px 2.1px 0.02px #34495e,
+    4.2px -9.1px 0.02px #34495e, -8px -6px 0.02px #34495e,
+    -7.6px 6.5px 0.02px #34495e, 4.8px 8.8px 0.02px #34495e,
+    9.6px -2.8px 0.02px #34495e, -0.7px -10px 0.02px #34495e,
+    -9.9px -1.5px 0.02px #34495e, -3.5px 9.4px 0.02px #34495e,
+    8.4px 5.4px 0.02px #34495e, 7.1px -7px 0.02px #34495e,
+    -5.4px -8.4px 0.02px #34495e, -9.4px 3.5px 0.02px #34495e,
+    1.4px 9.9px 0.02px #34495e, 10px 0.8px 0.02px #34495e,
+    2.9px -9.6px 0.02px #34495e, -8.7px -4.8px 0.02px #34495e,
+    -6.6px 7.5px 0.02px #34495e, 5.9px 8px 0.02px #34495e,
+    9.1px -4.1px 0.02px #34495e, -2.1px -9.8px 0.02px #34495e,
+    -10px -0.1px 0.02px #34495e, -2.2px 9.8px 0.02px #34495e,
+    9.1px 4.2px 0.02px #34495e, 6.1px -8px 0.02px #34495e,
+    -6.5px -7.6px 0.02px #34495e, -8.8px 4.7px 0.02px #34495e,
+    2.7px 9.6px 0.02px #34495e, 10px -0.6px 0.02px #34495e,
+    1.5px -9.9px 0.02px #34495e, -9.3px -3.6px 0.02px #34495e,
+    -5.5px 8.4px 0.02px #34495e, 7px 7.2px 0.02px #34495e,
+    8.5px -5.3px 0.02px #34495e, -3.4px -9.4px 0.02px #34495e,
+    -9.9px 1.3px 0.02px #34495e, -0.8px 10px 0.02px #34495e,
+    9.6px 2.9px 0.02px #34495e, 4.9px -8.7px 0.02px #34495e,
+    -7.5px -6.7px 0.02px #34495e, -8.1px 5.9px 0.02px #34495e,
+    4px 9.2px 0.02px #34495e, 9.8px -2px 0.02px #34495e,
+    0.2px -10px 0.02px #34495e, -9.7px -2.3px 0.02px #34495e,
+    -4.3px 9px 0.02px #34495e, 7.9px 6.1px 0.02px #34495e;
 }
-
-

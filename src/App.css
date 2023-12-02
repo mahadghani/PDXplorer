@@ -18,9 +18,10 @@ body {
   align-items: center;
   background-color: rgb(34, 35, 42);
   overflow-y: auto;
-
 }
-.top-bar, .widgets-container, .weather-widget {
+.top-bar,
+.widgets-container,
+.weather-widget {
   flex-shrink: 0;
   min-height: 100px;
 }
@@ -40,20 +41,17 @@ body {
 /*  width: 100%;*/
 /*  flex-grow: 0;*/
 
-/*}*/
 .widgets-container {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr; /* 1 fraction for left, 2 for middle, 1 for right */
+  grid-template-columns: 1fr 2fr 1fr;
   height: 62.5vh;
   min-height: 625px;
   width: 100%;
   justify-content: center;
-  margin-bottom:20px;
+  margin-bottom: 20px;
 }
 
 .widgets-container > * {
-  /* Common styles for all widgets */
-
   /*flex-grow: 1;*/
 }
 
@@ -63,10 +61,7 @@ body {
   height: auto;
 }
 
-
-
 .hotspots-widget {
-  /* Styles for HotspotWidget */
   /*display: flex;*/
   /*flex: 1;*/
   /*flex-shrink: 0;*/
@@ -76,8 +71,6 @@ body {
 }
 
 .map-widget {
-  /* Styles for MapWidget */
-
   max-width: 100%;
   max-height: 100%;
   /*flex: 2;*/
@@ -105,8 +98,7 @@ body {
 
 .biketown-widget,
 .trimet-widget {
-  /* Styles for BiketownWidget and TrimetWidget */
-/* they will each take up equal height */
+  /* they will each take up equal height */
   background-color: rgba(255, 255, 255, 0.3) !important;
 
   /*border-color: blueviolet;*/
@@ -123,9 +115,6 @@ body {
 .weather-widget {
   margin: 10px !important;
 }
-
-
-
 
 .App-header {
   background-color: #282c34;
@@ -154,17 +143,15 @@ body {
     grid-column-end: 2;
     height: fit-content;
     justify-content: center;
-
-
   }
 
   .widgets-container > .hotspots-widget {
     grid-column: 1;
     grid-row: 2;
   }
-  .widgets-container> .right-column {
+  .widgets-container > .right-column {
     grid-column: 2;
-    grid-row:  2;
+    grid-row: 2;
   }
 }
 
@@ -173,23 +160,21 @@ body {
     display: flex;
     flex-direction: column;
 
-
     height: auto;
     min-height: 625px;
     width: 100%;
     justify-content: center;
-    margin-bottom:20px;
+    margin-bottom: 20px;
   }
   .widgets-container > .map-widget {
-  order: 3;
-width: 100%
-
+    order: 3;
+    width: 100%;
   }
 
   .widgets-container > .hotspots-widget {
     order: 1;
   }
-  .widgets-container> .right-column {
-order: 2;
+  .widgets-container > .right-column {
+    order: 2;
   }
 }

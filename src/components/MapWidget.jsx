@@ -9,9 +9,9 @@ import bikeIconPath from "../Pictures/bike-icon.png";
 // want to be able to import layers as a prop
 const bikeIcon = L.icon({
   iconUrl: bikeIconPath,
-  iconSize: [50,50],
+  iconSize: [50, 50],
   iconAnchor: [12, 25],
-  popupAnchor: [0, 0]
+  popupAnchor: [0, 0],
 });
 
 const createBiketownLayerGroup = (biketownLayer) => {
@@ -19,7 +19,7 @@ const createBiketownLayerGroup = (biketownLayer) => {
     return null;
   }
 
-  const markers = biketownLayer.map(coordinate => {
+  const markers = biketownLayer.map((coordinate) => {
     return L.marker([coordinate[0], coordinate[1]], { icon: bikeIcon });
   });
 
@@ -30,12 +30,14 @@ const createTrimetLayerGroup = (trimetLayer) => {
     return null;
   }
 
-  const routeLines = trimetLayer.map(segment => {
+  const routeLines = trimetLayer.map((segment) => {
     const from = [segment.fromLat, segment.fromLon];
     const to = [segment.destLat, segment.destLon];
 
-    const line = L.polyline([from, to], { color: 'blue' }); // You can customize the color
-    line.bindPopup(`Mode: ${segment.mode}, Duration: ${segment.duration} mins, Distance: ${segment.distance} km`);
+    const line = L.polyline([from, to], { color: "blue" }); // You can customize the color
+    line.bindPopup(
+      `Mode: ${segment.mode}, Duration: ${segment.duration} mins, Distance: ${segment.distance} km`
+    );
     return line;
   });
 
@@ -106,12 +108,16 @@ const MapWidget = ({
     const map = useMap();
 
     /* Functions to convert states to LayerGroup */
-    const eventLayerGroup = eventsLayer ? createLayerGroup(eventsLayer): null;
+    const eventLayerGroup = eventsLayer ? createLayerGroup(eventsLayer) : null;
 
-    const trimetLayerGroup = trimetLayer ? createTrimetLayerGroup(trimetLayer) : null;
-    const biketownLayerGroup = biketownLayer ? createBiketownLayerGroup(biketownLayer) : null;
+    const trimetLayerGroup = trimetLayer
+      ? createTrimetLayerGroup(trimetLayer)
+      : null;
+    const biketownLayerGroup = biketownLayer
+      ? createBiketownLayerGroup(biketownLayer)
+      : null;
 
-       function createLayerGroup(rawLayer) {
+    function createLayerGroup(rawLayer) {
       if (!rawLayer || rawLayer.length === 0) {
         return null;
       }
@@ -129,14 +135,10 @@ const MapWidget = ({
       return L.layerGroup(markers);
     }
 
-
-
-
     const layerGroups = {};
     if (eventLayerGroup) layerGroups["Events"] = eventLayerGroup;
     if (trimetLayerGroup) layerGroups["Trimet"] = trimetLayerGroup;
     if (biketownLayerGroup) layerGroups["Biketown"] = biketownLayerGroup;
-
 
     useMapEffect(map, position, layerGroups);
     return null;

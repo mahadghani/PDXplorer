@@ -1,5 +1,3 @@
-// Suntime.js
-
 import React, { useState, useEffect } from "react";
 import "./Suntime.css";
 import dayLogo from "../Pictures/sun.png";
@@ -38,7 +36,6 @@ function Suntime() {
       const formattedMinutes = String(minutes).padStart(2, "0");
       const formattedSeconds = String(seconds).padStart(2, "0");
 
-
       setCurrentTime(
         `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${
           hours >= 12 ? "PM" : "AM"
@@ -47,7 +44,7 @@ function Suntime() {
       if (time.sunrise && time.sunset) {
         //conver to 24h format
         const convertTo24h = (timeStr) => {
-          const [hour, minute, ,modifier] = timeStr.split(/:| /);
+          const [hour, minute, , modifier] = timeStr.split(/:| /);
           let convertedHour = parseInt(hour, 10);
           if (modifier === "PM" && convertedHour < 12) {
             convertedHour += 12;
@@ -84,8 +81,8 @@ function Suntime() {
           {isDaytime ? "It's Day!" : "It's" + " Night!"}
         </p>
         <p className={timeClass}>Current Time: {currentTime}</p>
-        <p>Sunrise: {time.sunrise}</p>
-        <p>Sunset: {time.sunset}</p>
+        <strong>Sunrise: {time.sunrise}</strong>
+        <strong>Sunset: {time.sunset}</strong>
       </div>
     </div>
   );
