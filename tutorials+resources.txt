@@ -10,3 +10,9 @@ o A bunch of leaflet tutorials
   - https://blog.logrocket.com/react-leaflet-tutorial/
 o CSS text outline effect:
   - https://stackoverflow.com/questions/4919076/outline-effect-to-text
+o Change Clock time every second:
+  - https://iq.js.org/questions/react/how-to-update-a-component-every-second
+o Basic XML parser for Trimet API XML Return data:
+  - https://www.w3schools.com/xml/xml_parser.asp
+o Storing and Using Environmental Keys for API resquests:
+  - https://www.makeuseof.com/react-api-keys-store-access/
