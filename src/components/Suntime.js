@@ -37,7 +37,7 @@ function Suntime() {
       const formattedHours = hours % 12 || 12;
       const formattedMinutes = String(minutes).padStart(2, "0");
       const formattedSeconds = String(seconds).padStart(2, "0");
-      const AMPM = hours >= 12 ? "PM" : "AM";
+
 
       setCurrentTime(
         `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${

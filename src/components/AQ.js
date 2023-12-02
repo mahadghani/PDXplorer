@@ -1,5 +1,3 @@
-// AQ.js
-
 import React, { useState, useEffect } from "react";
 import "./AQ.css";
 
@@ -27,12 +25,11 @@ function AQ() {
     fetchData();
   }, []);
 
-  if (!airPollutionData) {
-    return <div className="air-quality-widget">Loading...</div>;
+  if (!airPollutionData || !airPollutionData.data || !airPollutionData.data.current) {
+    return <div className="air-quality-widget">Loadinge...</div>;
   }
 
-  const { current } = airPollutionData.data;
-  const { pollution } = current;
+  const { pollution } = airPollutionData.data.current;
 
   // Determine pollution level based on AQI
   let pollutionLevel = "good";

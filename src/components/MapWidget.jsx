@@ -42,16 +42,21 @@ const createTrimetLayerGroup = (trimetLayer) => {
   return L.layerGroup(routeLines);
 };
 const useMapEffect = (map, position, layers) => {
-  // layers is an array of
-  // LayerGroup objects
   useEffect(() => {
     if (map && position) {
       map.setView(position, 13);
     }
-    if (map && layers && layers.Events) {
-      const layerControl = L.control.layers(null, layers).addTo(map);
+
+    if (map) {
+      let layerControl;
+      if (layers && Object.keys(layers).length > 0) {
+        layerControl = L.control.layers(null, layers).addTo(map);
+      }
+
       return () => {
-        layerControl.remove();
+        if (layerControl) {
+          layerControl.remove();
+        }
       };
     }
   }, [map, position, layers]);
@@ -101,12 +106,12 @@ const MapWidget = ({
     const map = useMap();
 
     /* Functions to convert states to LayerGroup */
-    const eventLayerGroup = createLayerGroup(eventsLayer);
+    const eventLayerGroup = eventsLayer ? createLayerGroup(eventsLayer): null;
 
     const trimetLayerGroup = trimetLayer ? createTrimetLayerGroup(trimetLayer) : null;
     const biketownLayerGroup = biketownLayer ? createBiketownLayerGroup(biketownLayer) : null;
 
-    function createLayerGroup(rawLayer) {
+       function createLayerGroup(rawLayer) {
       if (!rawLayer || rawLayer.length === 0) {
         return null;
       }
@@ -126,12 +131,12 @@ const MapWidget = ({
 
 
 
-    // layer groups
-    const layerGroups = {
-      Events: eventsLayer ? eventLayerGroup : null,
-      Trimet:  trimetLayerGroup,
-      Biketown: biketownLayer? biketownLayerGroup:null
-    };
+
+    const layerGroups = {};
+    if (eventLayerGroup) layerGroups["Events"] = eventLayerGroup;
+    if (trimetLayerGroup) layerGroups["Trimet"] = trimetLayerGroup;
+    if (biketownLayerGroup) layerGroups["Biketown"] = biketownLayerGroup;
+
 
     useMapEffect(map, position, layerGroups);
     return null;

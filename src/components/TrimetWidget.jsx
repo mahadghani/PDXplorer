@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Header, List } from 'semantic-ui-react'
+import { Card, List } from 'semantic-ui-react'
 import XMLParser from 'react-xml-parser';
 import './TrimetWidget.css'
 
