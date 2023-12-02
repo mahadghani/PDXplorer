@@ -62,7 +62,11 @@ function App() {
           className="map-widget"
         />
         <div className="right-column">
-          <TrimetWidget setLayer={updateTrimetLayer} coordinates={geocodedDestCoord} className='trimet-widget'/>
+          <TrimetWidget
+            setLayer={updateTrimetLayer}
+            coordinates={geocodedDestCoord}
+            className="trimet-widget"
+          />
           {/*<BiketownWidget updateLayer={updateBiketownLayer} className='biketown-widget'/>*/}
           {/*<Card className="trimet-widget">*/}
           {/*  <Card.Content>*/}
@@ -76,14 +80,18 @@ function App() {
           {/*    <List>/!* Populate with relevant Biketown data *!/</List>*/}
           {/*  </Card.Content>*/}
           {/*</Card>*/}
-          <BiketownWidget updateLayer={updateBiketownLayer} coordinates={geocodedDestCoord} className="biketown"/>
+          <BiketownWidget
+            updateLayer={updateBiketownLayer}
+            coordinates={geocodedDestCoord}
+            className="biketown"
+          />
         </div>
       </div>
       <Weather className="weather-widget" />
       {showCard ? (
         <LandingCard onGoClick={handleGoClick} />
       ) : (
-        <p>Destination: {destination}</p>
+        <p className="makewhite">Destination: {destination}</p>
       )}
       {/*displays destination info when card not shown*/}
     </Container>
