@@ -6,7 +6,7 @@ PR: trimet-reformat. Next up, I'll integrate biketown
 
 mahadghani
 11/29/2023 at 23:57:18 PST
-PR: Biketown widget ready
+PR: Biketown widget ready; Fetches real-time bike data from Biketown using the Lyft API
 
 mattsloe
 11/29/2023 at 12:42:02 PST
@@ -15,6 +15,14 @@ PR: hotfixes. Some formatting and minor code changes. Prevented suntime from upd
 mattsloe
 11/29/2023 at 01:00:34 PST
 PR: widgets and formatting. Added AQ and Umbrella components to the App. Did major formatting update. (More formatting work to be done fonts, colors, contrast, etc.)
+
+mahadghani
+11/28/2023 at 02:31:00 PST
+PR: Umbrella or Daylight Component; Displays either a rainy or sunny view based on the fetched weather conditions. Checks if it's currently raining 
+
+mahadghani
+11/28/2023 at 13:26:00 PST
+PR: Made air pollution component in AQ.js fetch air pollution data using the AirVisual API
 
 mattsloe
 11/28/2023 at 22:55:29 PST
@@ -51,6 +59,14 @@ Perfect Thanks
 mattsloe
 11/27/2023 at 15:19:13 PST
 I patched in the Suntime and Weather widgets and added a bunch of formatting on this last PR. I plan to work on the map more next
+
+mahadghani
+11/22/2023 at 19:18:00 PST
+A React component that displays whether it's day or night based on the current time and the sunrise and sunset information obtained from the Sunrise Sunset API. 
+
+mahadghani
+11/22/2023 at 19:18:00 PST
+Made PR and merged React component for displaying weather information using the WeatherAPI. This component fetches and renders current weather details, including location, temperature, condition, wind speed, humidity, and pressure
 
 mahadghani
 11/22/2023 at 14:52:48 PST
